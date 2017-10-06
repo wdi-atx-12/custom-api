@@ -1,18 +1,24 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
-// TODO: include all model files here (and export models together below)
-const testModels = require('./test');
+mongoose.Promise = global.Promise;
 
-// connect to Mongo DB
-mongoose.connection.openUri(process.env.MONGODB_URI || process.env.DB_CONN, {}, function(err, conn) {
-  if (err) {
-    console.log('Error connecting to Mongo DB.', err);
-  } else {
-    console.log('Mongoose successfully connected to Mongo DB.');
-  }
+const food = require('./food');
+const mealEntry = require('./meal-entry');
+const mealTracker = require('./meal-tracker');
+
+
+mongoose.connection.openUri(process.env.MONGODB_URI || process.env.DB_MONGO_URI_LOCAL, {
+  useMongoClient: true
 });
 
+
+
+// export
 module.exports = {
-  // TODO: add references to all models here
-  Test: testModels.Test
+  NutritionInfo: food.NutritionInfo,
+  Food: food.Food,
+  FoodServing: mealEntry.FoodServing,
+  MealEntry: mealEntry.MealEntry,
+  MealDay: mealTracker.MealDay,
+  MealTracker: mealTracker.MealTracker,
 };

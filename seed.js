@@ -1,7 +1,7 @@
 const db = require('./models/');
 
 const recurrences = [
-
+  {}
 ]
 
 db.Account.remove({}, () => {

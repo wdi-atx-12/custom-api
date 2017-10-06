@@ -10,8 +10,19 @@ mongoose.connection.openUri(process.env.MONGODB_URI || process.env.DB_CONN, {}, 
   }
 });
 
+function mapParams(obj) {
+  let newObj = {};
+  for(key in obj) {
+    if(obj[key]) {
+      newObj[key] = obj[key];
+    }
+  }
+  return newObj;
+}
+
 module.exports = {
   Account: require('./account').Account,
   Transaction: require('./recurrence').Transaction,
   Recurrence: require('./recurrence').Recurrence,
+  mapParams: mapParams,
 };

@@ -12,19 +12,22 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // app routes
-console.log(RootRoutes.getHome);
 app.get('/', RootRoutes.getHome);
+
 app.get('/accounts', AccountsRoutes.getAll);
-app.get('/accounts', AccountsRoutes.postNew);
 app.get('/accounts/:id', AccountsRoutes.getOne);
+app.post('/accounts', AccountsRoutes.postNew);
+app.put('/accounts/:id', AccountsRoutes.update);
 
 app.get('/recurrences', RecurrencesRoutes.getAll);
-app.get('/recurrences', RecurrencesRoutes.postNew);
 app.get('/recurrences/:id', RecurrencesRoutes.getOne);
+app.post('/recurrences', RecurrencesRoutes.postNew);
+app.put('/recurrences/:id', RecurrencesRoutes.update);
 
 app.get('/transactions', TransactionsRoutes.getAll);
-app.get('/transactions', TransactionsRoutes.postNew);
 app.get('/transactions/:id', TransactionsRoutes.getOne);
+app.post('/transactions', TransactionsRoutes.postNew);
+app.put('/transactions/:id', TransactionsRoutes.update);
 
 // start app
 app.listen(port, function(err) {

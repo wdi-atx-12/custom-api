@@ -19,14 +19,14 @@ app.get('/accounts/:id', AccountsRoutes.getOne);
 app.post('/accounts', AccountsRoutes.postNew);
 app.put('/accounts/:id', AccountsRoutes.update);
 
-app.get('/recurrences', RecurrencesRoutes.getAll);
+app.get('/accounts/:id/recurrences', RecurrencesRoutes.getAll);
 app.get('/recurrences/:id', RecurrencesRoutes.getOne);
-app.post('/recurrences', RecurrencesRoutes.postNew);
+app.post('/accounts/:id/recurrences', RecurrencesRoutes.postNew);
 app.put('/recurrences/:id', RecurrencesRoutes.update);
 
-app.get('/transactions', TransactionsRoutes.getAll);
+app.get('/accounts/:id/transactions', TransactionsRoutes.getAll);
 app.get('/transactions/:id', TransactionsRoutes.getOne);
-app.post('/transactions', TransactionsRoutes.postNew);
+// app.post('/accounts/:id/transactions', TransactionsRoutes.postNew);
 app.put('/transactions/:id', TransactionsRoutes.update);
 
 // start app

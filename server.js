@@ -21,10 +21,17 @@ app.get('/', function(req, res) {
 
 
 // or you can import route handlers from other files like this:
-const testRoutes = require('./routes/newOrder');
+const routes = require('./routes/newOrder');
 
-app.get('/newOrder', testRoutes.getOrders);
-app.post('/newOrder', testRoutes.createOrder);
+app.get('/newOrder', routes.getOrders);
+app.post('/newOrder', routes.createOrder);
+app.get('/newOrder/:id', routes.getOrderById);
+
+//entree stuff
+app.get('/newEntrees', routes.getEntrees);
+app.post('/newEntrees', routes.createEntrees);
+
+//get all, get specific, post new, put update specific, delete specific
 
 // TODO: delete the above dummy routes and add your actual routes
 

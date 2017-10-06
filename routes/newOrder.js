@@ -33,6 +33,7 @@ function createOrder(req, res) {
     price: req.body.price,
     entrees: req.body.entrees
   });
+
   newOrder.save(function(err, data) {
     if (err) {
       console.log('Error saving test item to DB.', err);
@@ -51,6 +52,7 @@ function createOrder(req, res) {
     glutenFree: req.body.glutenFree,
     price: req.body.price
   });
+
   newEntrees.save(function(err, data) {
     if (err) {
       console.log('Error saving test item to DB.', err);

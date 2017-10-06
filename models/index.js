@@ -12,9 +12,6 @@ mongoose.connection.openUri(process.env.MONGODB_URI || process.env.DB_CONN, {}, 
     console.log('Mongoose successfully connected to Mongo DB.');
   }
 });
-module.exports.Book = require("./book.js");
-
-module.exports.Author = require("./author.js");
 module.exports = {
   Desert: models.Desert,
   Drink: models.Drink,

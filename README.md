@@ -11,7 +11,7 @@ For example, if your API is for keeping track of various hotels, it would need t
 * Well-organized **JSON API** Endpoints
 * The ability to **read** (`GET`) each type of resource **as a collection**
 * The ability to **read** (`GET`) each type of resource **by specific ID**
-* The ability to **create** (`POST`) an new resource of each type
+* The ability to **create** (`POST`) a new resource of each type
 * At least one **update** (`PUT`) endpoint
 * At least one **delete** (`DELETE`) endpoint
 
@@ -25,7 +25,7 @@ Before we start coding, let's prepare to deploy our API on Heroku so other devel
 
 You can find full instructions here: [Deploying Express Apps to Heroku](https://github.com/SF-WDI-LABS/shared_modules/blob/master/how-to/heroku-mean-stack-deploy.md)
 
-As you continue to work on this project, you'll need to remember to push your changes to heroku (just like you would with github!):
+As you continue to work on this project, you'll need to remember to push your changes to Heroku (just like you would with Github!):
 
 ```bash
 # git add changed-files
@@ -34,7 +34,7 @@ git push heroku master
 heroku open
 ```
 
-It's common for code to break "in production" (broken links, different environment, missing dependenies…), even when it works fine "in development" on your computer, so do your best to debug! Let us know if you get stuck.
+It's common for code to break "in production" even when it works fine "in development" on your computer (due to different environment variables, missing dependenies, etc). Do your best to debug! Let us know if you get stuck on deployment issues.
 
 ## Step 1: Verify the Test Routes in Postman
 
@@ -56,7 +56,7 @@ Next, go to the `models/` folder and add a new file for your main schema/model. 
 
 Be sure to export the model from the file and then modify `models/index.js`. It should require the file you just created and then export the models from it so they can be used more directly while preparing responses for our routes.
 
-## Step 3: Create Endpoints for Your Primary Model
+## Step 3: Create Your Primary Endpoints
 
 Now go to the `routes/` folder and create a new file to handle your endpoints for the primary model. It should contain function definitions for handling various endpoints (`GET`, `POST`, etc) related to your primary model.
 
@@ -77,3 +77,9 @@ Return to Postman and test again, making sure that your code is working "in prod
 Now it's time to expand on what you've done. Piece by piece, add the other schemas/models and endpoints you planned.
 
 Be sure to test your endpoints as you go in Postman. Also don't forget to commit your changes and deploy to Heroku from time to time.
+
+## Options for Extra Challenge
+
+- **Add even more schemas/models/enpoints.** Thinking of more detailed information is usually fairly easy, but the code to support it gets more difficult the more detail is added.
+- **Add support for query parameters** to limit/filter responses on your endpoints that retrieve all resources in a collection. For example, you might limit items based on rating, time/date range, tags, etc.
+- **Document all the endpoints of your API** in a markdown file. What does each endpoint do? How should a new user of your API get started?

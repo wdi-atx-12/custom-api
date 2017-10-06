@@ -1,10 +1,10 @@
 {
-  "name": "custom-api",
+  "name": "food-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Data API for keeping track of nutrition information. Like a food/nutrition tracker/diary.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +12,9 @@
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.1",
+    "hbs": "^4.0.1",
+    "lodash": "^4.17.4",
+    "mongodb": "^2.2.31",
     "mongoose": "^4.12.0"
   }
 }

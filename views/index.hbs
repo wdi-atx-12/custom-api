@@ -1,0 +1,81 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+  <link rel="stylesheet" href="/styles/style.css">
+</head>
+<body>
+
+<div class="container" >
+  <form action="/api/addFood" method="post">
+    <div class="form-group row">
+      <label for="example-text-input" class="col-3 col-form-label">Food:</label>
+      <div class="col-3">
+        <input name="name" class="form-control" type="text" value="">
+      </div>
+    </div>
+    
+    <div class="form-group row">
+      <label for="example-search-input" class="col-3 col-form-label">Serving Size:</label>
+      <div class="col-3">
+        <input name="servingSizeAmount" class="form-control" type="text" value="4">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-search-input" class="col-3 col-form-label">Unit:</label>
+      <div class="col-3">
+        <input name="servingSizeUnit" class="form-control" type="text" value="ounces">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-search-input" class="col-3 col-form-label">Description:</label>
+      <div class="col-3">
+        <input name="servingSizeDescription" class="form-control" type="text" value="N/A">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-search-input" class="col-3 col-form-label">Calories:</label>
+      <div class="col-3">
+        <input name="calories" class="form-control" type="text" value="">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-search-input" class="col-3 col-form-label">Total Fat:</label>
+      <div class="col-3">
+        <input name="totalFat" class="form-control" type="text" value="">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-search-input" class="col-3 col-form-label">Sodium:</label>
+      <div class="col-3">
+        <input name="sodium" class="form-control" type="text" value="">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-search-input" class="col-3 col-form-label">Sugar:</label>
+      <div class="col-3">
+        <input name="sugar" class="form-control" type="text" value="">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-search-input" class="col-3 col-form-label">Protein:</label>
+      <div class="col-3">
+        <input name="protein" class="form-control" type="text" value="">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="example-search-input" class="col-3 col-form-label">Fiber:</label>
+      <div class="col-3">
+        <input name="fiber" class="form-control" type="text" value="">
+      </div>
+    </div>
+    <input class="btn btn-primary" type="submit" value="Submit">
+  </form>
+</div>
+
+
+
+
+</body>
+</html>

@@ -25,20 +25,13 @@ app.use(bodyParser.json());
 
 
 
+const beverageRoutes = require('./routes/beverages');
+const toppingRoutes = require('./routes/toppings');
+const dessertRoutes = require('./routes/desserts');
+//const sandwichRoutes = require('./routes/sandwiches');
+//const sandwichMenuRoutes = require('./routes/sandwichMenu');
 
 
-//returns an object created from a group of key/value pairs
-function GetObjectFromKeyValuePairs(pairs)
-{
-	var tmp = {};
-
-	for(var key in pairs)
-		if(key[0] !== "_")
-			if(pairs[key].length !== 0)
-				tmp[`${key}`] = `${pairs[key]}`;
-
-	return tmp;
-} // GetObjectFromKeyValuePairs()
 
 ////////////////////
 //  ROUTES
@@ -49,58 +42,45 @@ app.get('/', function (req, res) {
 	res.sendFile('views/index.html' , { root : __dirname});
 });
 
-
-
-var beverageRouteBase = '/api/beverages';
+var routeRoot = "/api";
+var bases = ["beverage","topping","dessert"];
 var endpoints = {
-	"selectAllBeverages": {base: beverageRouteBase, action: 'get', 		route: "", 		params: []},
-	"selectBeverage"	: {base: beverageRouteBase, action: 'get', 		route: "/:<>", 	params: ["id"]},
-	"insertBeverage"	: {base: beverageRouteBase, action: 'post', 	route: "", 		params: []},
-	"updateBeverage"	: {base: beverageRouteBase, action: 'put', 		route: "/:<>", 	params: ["id"]},
-	"deleteBeverage"	: {base: beverageRouteBase, action: 'delete',	route: "/:<>", 	params: ["id"]}
+	"selectAllItems": {base: "", action: 'get', 	route: "", 		params: []},
+	"selectItem"	: {base: "", action: 'get', 	route: "/:<>", 	params: ["id"]},
+	"insertItem"	: {base: "", action: 'post', 	route: "", 		params: []},
+	"updateItem"	: {base: "", action: 'put', 	route: "/:<>", 	params: ["id"]},
+	"deleteItem"	: {base: "", action: 'delete',	route: "/:<>", 	params: ["id"]}
 };
 
 var createRouteString = function(key, actions) {
 	var rt = `${actions[key].route}`.split("<>");
-	var str = actions[key].base;
+	var str = `${routeRoot}/${actions[key].base}s`;
 	if(rt.length === actions[key].params.length+1) {
 		for(var i = 0; i < rt.length - 1; i++) {
 			str += rt[i]+actions[key].params[i];
 		}
 	}
 	return str;
+}//end of createRouteString()
+
+for (var i =0; i < bases.length; i++) {
+	for(var key in endpoints) {
+		endpoints[key].base = bases[i];
+		var endpoint = endpoints[key];
+		var routeStr = createRouteString(key,endpoints);
+		var e= eval(`app.${endpoint.action}('${routeStr}',${endpoint.base}Routes.${key});`);
+
+		console.log(routeStr);
+		console.log(`Calling endpoint: ${key}(): ${endpoint}`);
+	} // end of for apiFoods[key]
 }
-
-const beverageRoutes = require('./routes/beverage');
-
-for(var key in endpoints) {
-	eval(`var func = ${key}`);
-	var endpoint = endpoints[key];
-	//ar func = new Function(`func = ${key}`);
-	var e= eval(`app.${endpoint.action}('${createRouteString(key,endpoints)}',${beverageRoutes}.${key});`);
-
-	console.log(createRouteString(key,endpoints));
-	console.log(`Calling endpoint: ${key}(): ${endpoint.action} : ${e}`);
-} // end of for apiFoods[key]
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // start app
 app.listen(port, function(err) {
-  if (err) {
-    console.log(`Error starting server on port ${port}`, err);
-  } else {
-    console.log(`Server running on port ${port}.`);
-  }
+	if (err) {
+		console.log(`Error starting server on port ${port}`, err);
+	} else {
+		console.log(`Server running on port ${port}.`);
+	}
 });

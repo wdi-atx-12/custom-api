@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Beverage = mongoose.model('Beverage', new mongoose.Schema({
+const Dessert = mongoose.model('Dessert', new mongoose.Schema({
 name: {
 	type: String
 	},
@@ -11,5 +11,5 @@ price: {
 }));
 
 module.exports = {
-  Beverage: Beverage
+  Dessert: Dessert
 }

@@ -13,67 +13,23 @@ app.get('/', function(req,res){
   res.send('hello world');
 });
 
+const recipeRoutes = require('./routes/recipes');
 //get all recipes
-app.get('/recipe', function(req,res){
-  db.Recipe.find({}, function(err, data){
-    if(err){
-    res.status(500).send('Error retrieving data.');
-    }else{
-    res.json(data);
-    }
-  });
-});
-
+app.get('/recipe', recipeRoutes.getRecipes);
 //post/create new recipe
-app.post('/recipe', function(req,res){
-  var newRecipe = new db.Recipe({
-    name: req.body.name,
-    description: req.body.description,
-    imageUrl: req.body.imageUrl,
-    ingredients: req.body.ingredients,
-    instructions: req.body.instructions,
-    tags: req.body.tags
-  });
-  newRecipe.save(function(err,newRecipe){
-    if(err){
-      return console.log("create error: "+ err);
-    }
-    console.log("created ", newRecipe.name);
-    res.json(newRecipe);
-  });
-});
-
+app.post('/recipe', recipeRoutes.createRecipe);
 //get one recipe by ID
-app.get('/recipe/:id', function(req, res){
-  var recipeId = req.params.id;
-  db.Recipe.findOne({_id: recipeId}, function(err, foundRecipe){
-    res.json(foundRecipe);
-  })
-});
-
+app.get('/recipe/:id', recipeRoutes.getOneRecipe);
 //update recipe
-app.put('/recipe/:id', function(req,res){
-  var recipeId = req.params.id;
-  var newRecipe = {
-    name: req.body.name,
-    description: req.body.description,
-    imageUrl: req.body.imageUrl,
-    ingredients: req.body.ingredients,
-    instructions: req.body.instructions,
-    tags: req.body.tags
-  };
-  db.Recipe.findByIdAndUpdate(recipeId, newRecipe, {new: true}, function(err, updatedRecipe){
-    res.json(updatedRecipe);
-  });
-});
-
+app.put('/recipe/:id', recipeRoutes.updateRecipe);
 //delete recipe
-app.delete('/recipe/:id', function(req,res){
-  var recipeId = req.params.idl
-  db.Recipe.findOneAndRemove({_id: recipeId}, function(err, removedRecipe){
-    res.json(removedRecipe)
-  })
-})
+app.delete('/recipe/:id', recipeRoutes.deleteRecipe);
+
+const recipeBookRoutes = require('./routes.recipeBooks');
+//get all recipe books
+app.get('/recipe', recipeBookRoutes.getRecipeBook);
+//TODO: make all other routes for recipe book
+//TODO: put stuff on heroku
 
 // start app
 app.listen(port, function(err) {

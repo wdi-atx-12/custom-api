@@ -25,3 +25,28 @@ db.Recipe.remove({}, function(err, removedItems){
     console.log('Removed Food records. Now adding food items');
   }
 });
+
+
+const SophiasRecipeBook = new db.RecipeBook({
+  recipes: [{
+      type: Schema.Types.ObjectId,
+      ref: "Recipe"
+    }],
+  user: "Sophia Chow"
+});
+
+SophiasRecipeBook.save(function(err, savedBook){
+  if(err){
+    console.log("oh no! Who took my recipe book?");
+  }else{
+    console.log("I saved my recipe book!");
+  }
+});
+
+db.RecipeBook.remove({}, function(err, removedBook){
+  if(err){
+    console.log('Could not remove recipe book');
+  }else{
+    console.log('Removed recipe book');
+  }
+});

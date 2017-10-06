@@ -6,7 +6,7 @@ const AccountSchema = new Schema({
   acctNo: { type: String, required: true },
   routingNo: { type: String, required: true },
   tags: [String],
-  events: [{
+  recurrences: [{
     type: Schema.Types.ObjectId,
     ref: 'Recurrence',
   }],

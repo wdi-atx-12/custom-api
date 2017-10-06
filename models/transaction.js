@@ -1,8 +1,9 @@
 const Schema = require('mongoose').Schema;
 
 const TransactionSchema = new Schema({
-  name: String,
-  amount: Number,
+  name: { type: String, required: true },
+  date: Date,
+  amount: { type: Number, required: true },
   tags: [String],
 });
 

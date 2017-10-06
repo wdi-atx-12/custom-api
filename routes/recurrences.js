@@ -1,6 +1,8 @@
+const db = require('../models/');
+
 module.exports = {
   getAll: function(req, res) {
-    res.send('you are home!'); // TODO
+    res.send('getAll'); // TODO
   },
   getOne: function(req, res) {
     res.send('getOne');

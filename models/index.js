@@ -4,7 +4,7 @@ require('dotenv').config();
 const testModels = require('./test');
 
 // connect to Mongo DB
-mongoose.connection.openUri(process.env.DB_CONN, {}, function(err, conn) {
+mongoose.connection.openUri(process.env.DB_CONN || process.env.MONGODB_URI, {}, function(err, conn) {
   if (err) {
     console.log('Error connecting to Mongo DB.', err);
   } else {

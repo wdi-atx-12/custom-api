@@ -7,11 +7,11 @@ const RecurrenceSchema = new Schema({
   start_date: { type: Date, required: true },
   end_date: Date,
   period: { type: String, default: 'once' },
-  events: [{
+  transactions: [{
     type: Schema.Types.ObjectId,
     ref: 'Transaction'
   }],
-  default_transaction: { type: TransactionSchema, required: true }
+  default_transaction: TransactionSchema
 });
 
 module.exports = {

@@ -12,7 +12,7 @@ var ifYouHadMyLove = new db.Song ({
   name: "If You Had My Love",
   artist: "Jennifer Lopez",
   url: "https://open.spotify.com/track/3x4yV0hW5Ve3TKhFkXSqFn",
-  // user: User[0]._id // can't figure out how to do this..?
+  user: admin // can't figure out how to do this..?
 })
 
 admin.save(function(err, savedUser){ // throws error if username is not unique :)

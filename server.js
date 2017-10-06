@@ -22,10 +22,33 @@ const testRoutes = require('./routes/test');
 app.get('/test', testRoutes.getTestItems);
 app.post('/test', testRoutes.createTestItem);
 
-const routes = require('./routes/routes');
-app.get('/users', routes.getUsers);
-// app.get('/users/:id', routeyRoutes.getUserById);
-// app.post('/WIP', routeyRoutes.WIP);
+// const routes = require('./routes/routes');
+// app.get('/users', routes.getUsers);
+// app.get('/songs', routes.getSongs);
+
+// get all users
+app.get('/users', function(req, res) {
+  db.User.find({}, function (err, data){
+    if (err) {
+      console.log("error retrieving users from db", err);
+      res.status(500).send('Internal server error');
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+// get all songs
+app.get('/songs', function(req, res) {
+  db.Song.find({}, function (err, data){
+    if (err) {
+      console.log("error retrieving songs from db", err);
+      res.status(500).send('Internal server error');
+    } else {
+      res.json(data);
+    }
+  });
+});
 
 // TODO: delete the above dummy routes and add your actual routes
 

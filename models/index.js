@@ -11,6 +11,6 @@ mongoose.connection.openUri(process.env.DB_CONN, {}, function(err, conn) {
     console.log('Mongoose successfully connected to Mongo DB.');
   }
 });
-
+//makes schemas and models available
 module.exports.Entree = require("./entree.js");
 module.exports.Order = require("./order.js")

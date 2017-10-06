@@ -19,8 +19,10 @@ app.get('/', function(req, res) {
   });
 });
 
+
 // or you can import route handlers from other files like this:
 const testRoutes = require('./routes/newOrder');
+
 app.get('/newOrder', testRoutes.getOrders);
 app.post('/newOrder', testRoutes.createOrder);
 

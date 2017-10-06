@@ -1,6 +1,10 @@
 // dependencies
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require('express'),
+  bodyParser = require('body-parser'),
+  RootRoutes = require('./routes/root'),
+  AccountsRoutes = require('./routes/accounts'),
+  RecurrencesRoutes = require('./routes/recurrences'),
+  TransactionsRoutes = require('./routes/transactions');
 
 // app config
 const app = express();
@@ -8,20 +12,19 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // app routes
-// you can add route handlers directly in this file like this:
-app.get('/', function(req, res) {
-  res.json({
-    message: 'Hello, world!',
-    type: 'greeting',
-    time: new Date()
-  });
-});
-// or you can import route handlers from other files like this:
-const testRoutes = require('./routes/test');
-app.get('/test', testRoutes.getTestItems);
-app.post('/test', testRoutes.createTestItem);
+console.log(RootRoutes.getHome);
+app.get('/', RootRoutes.getHome);
+app.get('/accounts', AccountsRoutes.getAll);
+app.get('/accounts', AccountsRoutes.postNew);
+app.get('/accounts/:id', AccountsRoutes.getOne);
 
-// TODO: delete the above dummy routes and add your actual routes
+app.get('/recurrences', RecurrencesRoutes.getAll);
+app.get('/recurrences', RecurrencesRoutes.postNew);
+app.get('/recurrences/:id', RecurrencesRoutes.getOne);
+
+app.get('/transactions', TransactionsRoutes.getAll);
+app.get('/transactions', TransactionsRoutes.postNew);
+app.get('/transactions/:id', TransactionsRoutes.getOne);
 
 // start app
 app.listen(port, function(err) {

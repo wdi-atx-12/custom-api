@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 app.use(express.static('public'));
 
-const api = require('../controllers/routes.js');
+const api = require('../routes/routes.js');
 app.use('/api', api);
 
 

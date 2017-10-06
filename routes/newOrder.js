@@ -31,7 +31,7 @@ function createOrder(req, res) {
     howMany: req.body.howMany,
     feedsUpTo: req.body.feedsUpTo,
     price: req.body.price,
-    entrees: req.body.entrees
+   // entrees: req.body.entrees
   });
 
   newOrder.save(function(err, data) {

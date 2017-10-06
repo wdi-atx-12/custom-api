@@ -21,6 +21,10 @@ const testRoutes = require('./routes/test');
 app.get('/test', testRoutes.getTestItems);
 app.post('/test', testRoutes.createTestItem);
 
+const showRoutes = require('.routes/show');
+app.get('/show', showRoutes.getAllShows);
+app.post('/show', showRoutes.addShow);
+
 // TODO: delete the above dummy routes and add your actual routes
 
 // start app

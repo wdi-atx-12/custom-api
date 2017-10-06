@@ -11,23 +11,23 @@ app.use(bodyParser.json());
 // you can add route handlers directly in this file like this:
 app.get('/', function(req, res) {
   res.json({
-    message: 'Hello, world!',
+    message: 'Hello, world',
     type: 'greeting',
     time: new Date()
   });
 });
 // or you can import route handlers from other files like this:
-const testRoutes = require('./routes/test');
-app.get('/test', testRoutes.getTestItems);
-app.post('/test', testRoutes.createTestItem);
+const eraRoutes = require('./routes/era');
+app.get('/era', eraRoutes.getAllEras);
+app.post('/era', eraRoutes.createEra);
 
 // TODO: delete the above dummy routes and add your actual routes
 
 // start app
-app.listen(port, function(err) {
+app.listen(process.env.PORT || 3000), function(err) {
   if (err) {
     console.log(`Error starting server on port ${port}`, err);
   } else {
     console.log(`Server running on port ${port}.`);
   }
-});
+};

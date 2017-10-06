@@ -2,10 +2,10 @@
 
 const db = require('../models');
 
-function getTestItems(req, res) {
-  db.Test.find({}, function(err, data) {
+function getEra(req, res) {
+  db.Era.find({}, function(err, data) {
     if (err) {
-      console.log('Error retrieving test items from DB.', err);
+      console.log('Error retrieving Eras from DB.', err);
       res.status(500).send('Internal server error');
     } else {
       res.json(data);
@@ -13,14 +13,15 @@ function getTestItems(req, res) {
   });
 }
 
-function createTestItem(req, res) {
-  const newTestItem = db.Test({
+function createEra(req, res) {
+  const newEra = db.Era({
     name: req.body.name,
-    count: req.body.count,
-    time: req.body.time,
+    dates: req.body.dates,
+    noteableComposers: req.body.noteableComposers,
+    stylisticElements: req.body.stylisticElements
   });
 
-  newTestItem.save(function(err, data) {
+  newEra.save(function(err, data) {
     if (err) {
       console.log('Error saving test item to DB.', err);
       res.status(500).send('Internal server error');
@@ -32,6 +33,6 @@ function createTestItem(req, res) {
 
 // functions are exported here so they can be referenced in server.js to respond to incoming requests
 module.exports = {
-  getTestItems: getTestItems,
-  createTestItem: createTestItem,
+  getAllEras: getEra,
+  createEra: createEra,
 };

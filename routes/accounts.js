@@ -12,7 +12,10 @@ module.exports = {
     });
   },
   postNew: function(req, res) {
-    res.json(req.body);
+    let acct = new db.Account(req.body);
+    acct.save({}, (err, newAcct) => {
+      res.json(newAcct);
+    });
   },
   update: function(req, res) {
     db.Account.findByIdAndUpdate(req.params.id, db.mapParams(req.body)
@@ -21,4 +24,4 @@ module.exports = {
       res.json(account);
     });
   }
-}
+};

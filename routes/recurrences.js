@@ -2,15 +2,26 @@ const db = require('../models/');
 
 module.exports = {
   getAll: function(req, res) {
-    res.send('getAll'); // TODO
+    db.Recurrence.find({}, (err, recurrences) => {
+      res.json(recurrences);
+    });
   },
   getOne: function(req, res) {
-    res.send('getOne');
+    db.Recurrence.findOne({_id: req.params.id}, (err, recurrence) => {
+      res.json(recurrence)
+    });
   },
   postNew: function(req, res) {
-    res.send('postNew');
+    let acct = new db.Recurrence(req.body);
+    acct.save({}, (err, newRecurrence) => {
+      res.json(newRecurrence);
+    });
   },
   update: function(req, res) {
-    res.send('update');
+    db.Recurrence.findByIdAndUpdate(req.params.id, db.mapParams(req.body)
+    , {new: true}, (err, recurrence) => {
+      if(err) { res.status(500).send(err); }
+      res.json(recurrence);
+    });
   }
-}
+};

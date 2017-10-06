@@ -24,7 +24,7 @@ app.post('/test', testRoutes.createTestItem);
 // TODO: delete the above dummy routes and add your actual routes
 
 // start app
-app.listen(port, function(err) {
+app.listen(process.env.PORT || 3000) {
   if (err) {
     console.log(`Error starting server on port ${port}`, err);
   } else {

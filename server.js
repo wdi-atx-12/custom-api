@@ -17,9 +17,9 @@ app.get('/', function(req, res) {
   });
 });
 // or you can import route handlers from other files like this:
-const testRoutes = require('./routes/test');
-app.get('/test', testRoutes.getTestItems);
-app.post('/test', testRoutes.createTestItem);
+const guitaristRoutes = require('./routes/guitarists');
+app.get('/guitarists', guitaristRoutes.getGuitarist);
+app.post('/guitarists', guitaristRoutes.createGuitarist);
 
 // TODO: delete the above dummy routes and add your actual routes
 

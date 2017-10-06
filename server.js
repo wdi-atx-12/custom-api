@@ -22,6 +22,11 @@ const testRoutes = require('./routes/test');
 app.get('/test', testRoutes.getTestItems);
 app.post('/test', testRoutes.createTestItem);
 
+const routes = require('./routes/routes');
+app.get('/users', routes.getUsers);
+// app.get('/users/:id', routeyRoutes.getUserById);
+// app.post('/WIP', routeyRoutes.WIP);
+
 // TODO: delete the above dummy routes and add your actual routes
 
 // start app

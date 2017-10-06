@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const user = require('./user');
 
 const SongSchema = new mongoose.Schema ({
   name: {
@@ -10,11 +11,15 @@ const SongSchema = new mongoose.Schema ({
     required: true
   },
   url: String, //not required but recommended
-  user: { //referenced
-    //userID
+  user: {                    // reference user that added song by ID
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
   }
 })
 
 const Song = mongoose.model('Song', SongSchema);
 
-module.exports = {Song: Song};
+module.exports = {
+  Song: Song,
+  SongSchema: SongSchema,
+};

@@ -5,10 +5,9 @@ var EntreeSchema = new Schema ({
   name: String,
   sides: String,
   ingredients: String,
-  glutenFree: Boolean,
-  price: String
+  glutenFree: Boolean
 });
 
-var Entrees = mongoose.model('Entree', EntreeSchema);
+var Entree = mongoose.model('Entree', EntreeSchema);
 
-module.exports = Entrees;
+module.exports = Entree;

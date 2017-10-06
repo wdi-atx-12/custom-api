@@ -7,30 +7,22 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
-
-// app routes
-// you can add route handlers directly in this file like this:
-app.get('/', function(req, res) {
-  res.json({
-    custName: 'Greg Grazdan',
-    howMany: 4,
-    feedsUpTo: '60',
-    price: 4000
-  });
-});
-
-
 // or you can import route handlers from other files like this:
-const routes = require('./routes/newOrder');
+const orderRoutes = require('./routes/orders'),
+      entreeRoutes = require('./routes/entrees')
 
-app.get('/newOrder', routes.getOrders);
-app.post('/newOrder', routes.createOrder);
-app.get('/newOrder/:id', routes.getOrderById);
+
+app.get('/newOrder', orderRoutes.getOrders);
+app.post('/newOrder', orderRoutes.createOrder);
+app.get('/newOrder/:id', orderRoutes.findByIdOrders);
+//app.put('/newOrder/:id', orderRoutes.changeOrder);
+//app.delete('/newOrder/:id', orderRoutes.deleteOrder);
+//app.get('/newOrder/:id', routes.getOrderById);
 
 //entree stuff
-app.get('/newEntrees', routes.getEntrees);
-app.post('/newEntrees', routes.createEntrees);
-
+app.get('/newEntrees', entreeRoutes.getEntrees);
+app.post('/newEntrees', entreeRoutes.createEntrees);
+app.get('/newEntrees/:id', entreeRoutes.findByIdEntrees);
 //get all, get specific, post new, put update specific, delete specific
 
 // TODO: delete the above dummy routes and add your actual routes

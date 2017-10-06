@@ -18,17 +18,6 @@ var selectBeverage = (req,res) => {
 	});
 } // end of selectBeverage()
 
-// save newBeverage to database
-function createBeverageWithAuthorAndRespondTo(beverage, author, res) {
-  beverage.save(function(err, beverage){
-    if (err) { return console.log("save error: " + err); }
-    console.log("saved ", beverage.title);
-
-    res.json(beverage); // send back the beverage!
-  });
-}
-
-
 // creates a new beverage in the BD
 var insertBeverage = (req, res) => {
 

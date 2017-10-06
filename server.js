@@ -52,7 +52,7 @@ app.get('/', function (req, res) {
 
 
 var beverageRouteBase = '/api/beverages';
-var apiEndpoints = {
+var endpoints = {
 	"selectAllBeverages": {base: beverageRouteBase, action: 'get', 		route: "", 		params: []},
 	"selectBeverage"	: {base: beverageRouteBase, action: 'get', 		route: "/:<>", 	params: ["id"]},
 	"insertBeverage"	: {base: beverageRouteBase, action: 'post', 	route: "", 		params: []},
@@ -60,9 +60,9 @@ var apiEndpoints = {
 	"deleteBeverage"	: {base: beverageRouteBase, action: 'delete',	route: "/:<>", 	params: ["id"]}
 };
 
-var createRouteString = function(routeBase, key, actions) {
+var createRouteString = function(key, actions) {
 	var rt = `${actions[key].route}`.split("<>");
-	var str = routeBase;
+	var str = actions[key].base;
 	if(rt.length === actions[key].params.length+1) {
 		for(var i = 0; i < rt.length - 1; i++) {
 			str += rt[i]+actions[key].params[i];
@@ -71,15 +71,16 @@ var createRouteString = function(routeBase, key, actions) {
 	return str;
 }
 
-const testRoutes = require('./routes/test');
+const beverageRoutes = require('./routes/beverage');
 
-for(var key in apiEndpoints) {
+for(var key in endpoints) {
 	eval(`var func = ${key}`);
+	var endpoint = endpoints[key];
 	//ar func = new Function(`func = ${key}`);
-	var e= eval(`app.${apiEndpoints[key].action}('${createRouteString(apiEndpoints[key].base,key,apiEndpoints)}',func);`);
+	var e= eval(`app.${endpoint.action}('${createRouteString(key,endpoints)}',${beverageRoutes}.${key});`);
 
-	console.log(createRouteString(apiEndpoints[key].base,key,apiEndpoints));
-	console.log(`Calling apiEndpoints: ${key}(): ${apiEndpoints[key].action} : ${e}`);
+	console.log(createRouteString(key,endpoints));
+	console.log(`Calling endpoint: ${key}(): ${endpoint.action} : ${e}`);
 } // end of for apiFoods[key]
 
 

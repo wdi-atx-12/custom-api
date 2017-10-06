@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
     required: true
   },
   displayName: String,
-  artist: Boolean,
+  artist: Boolean,                //default: false
   playlist: [{                    //REVIEW: array of playlists, referenced
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Playlist'

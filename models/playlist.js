@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const user = require('./user');
 const song = require('./song');
 
 const PlaylistSchema = new mongoose.Schema({
@@ -7,7 +8,11 @@ const PlaylistSchema = new mongoose.Schema({
   tags: [{
     type: String,
     default: ""
-  }]
+  }],
+  user: {                    // reference user that created playlist by ID
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }
 })
 
 const Playlist = mongoose.model('Playlist', PlaylistSchema);

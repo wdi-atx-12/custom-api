@@ -25,5 +25,10 @@ module.exports = {
     , {new: true}, (err, account) => {
       handleDbResponse(res, err, accounts);
     });
+  },
+  delete: function(req, res) {
+    db.Account.findByIdAndRemove(req.params.id, {}, (err, removed) => {
+      handleDbResponse(res, err, {});
+    });
   }
 };

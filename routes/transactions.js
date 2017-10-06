@@ -21,5 +21,10 @@ module.exports = {
       if(err) { res.status(500).send(err); }
       res.json(transaction);
     });
+  },
+  delete: function(req, res) {
+    db.Transaction.findByIdAndRemove(req.params.id, {}, (err, removed) => {
+      handleDbResponse(res, err, {});
+    });
   }
 };

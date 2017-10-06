@@ -38,5 +38,10 @@ module.exports = {
     , {new: true}, (err, recurrence) => {
       handleDbResponse(res, err, recurrence);
     });
+  },
+  delete: function(req, res) {
+    db.Recurrence.findByIdAndRemove(req.params.id, {}, (err, removed) => {
+      handleDbResponse(res, err, {});
+    });
   }
 };

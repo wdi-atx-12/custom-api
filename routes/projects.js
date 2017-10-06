@@ -13,6 +13,15 @@ function getProjects(req, res) {
 }
 
 // get one single project
+function getProject(req, res) {
+  db.Project.findById(id, function(err, data) {
+    if (err) {
+      console.log('Error, ', err);
+    } else {
+      res.json(data);
+    }
+  })
+}
 
 // create a project
 function createProject(req, res) {

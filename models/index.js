@@ -13,6 +13,8 @@ mongoose.connection.openUri(process.env.MONGODB_URI || process.env.DB_CONN, {}, 
 });
 
 module.exports = {
-  // TODO: add references to all models here
-  Test: testModels.Test
+  Account: require('./account'),
+  Transaction: require('./transaction').Transaction,
+  Recurrence: require('./recurrence').Recurrence,
+  Test: testModels.Test,
 };

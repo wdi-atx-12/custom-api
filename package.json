@@ -1,17 +1,26 @@
 {
-  "name": "custom-api",
+  "name": "collaborative-playlist-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "It's time to have some fun and play with the technologies you've learned in the past week. Your goal is to start your own API.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "",
+  "author": "Karla Moreno",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.2",
     "dotenv": "^4.0.0",
     "express": "^4.16.1",
     "mongoose": "^4.12.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deathnaut/custom-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/deathnaut/custom-api/issues"
+  },
+  "homepage": "https://github.com/deathnaut/custom-api#readme"
 }

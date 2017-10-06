@@ -4,7 +4,7 @@ require('dotenv').config();
 const testModels = require('./test');
 
 // connect to Mongo DB
-mongoose.connection.openUri(process.env.MONGODB_URI || process.env.DB_CONN, {}, function(err, conn) {
+mongoose.connection.openUri(process.env.DB_CONN, {}, function(err, conn) {
   if (err) {
     console.log('Error connecting to Mongo DB.', err);
   } else {
@@ -12,7 +12,5 @@ mongoose.connection.openUri(process.env.MONGODB_URI || process.env.DB_CONN, {}, 
   }
 });
 
-module.exports = {
-  // TODO: add references to all models here
-  Test: testModels.Test
-};
+module.exports.Entree = require("./entree.js");
+module.exports.Order = require("./order.js")

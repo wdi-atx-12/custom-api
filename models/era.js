@@ -2,11 +2,22 @@ const mongoose = require('mongoose');
 
 var eraSchema = new mongoose.Schema(
 {
-  name: String,
-  dates: String,
-  noteableComposers: String,
-  stylisticElements: String
-});
+  name: {
+    type: String,
+    required: true
+  },
+  dates: {
+    type: String,
+    default: ''
+  },
+  noteableComposers: {
+    type: String,
+    default: ''
+  },
+  stylisticElements: {
+    type: String,
+    default: ''
+};
 
 var Era = mongoose.model('Era', eraSchema);
 module.exports = {

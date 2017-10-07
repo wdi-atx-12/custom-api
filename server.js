@@ -17,10 +17,16 @@ app.get('/', function(req, res) {
     time: new Date()
   });
 });
+
+
+
 // or you can import route handlers from other files like this:
 const testRoutes = require('./routes/test');
 app.get('/test', testRoutes.getTestItems);
 app.post('/test', testRoutes.createTestItem);
+const vehiclesRoutes = require('./routes/vehicles');
+app.get('/vehicles', vehiclesRoutes.getVehicleItems);
+app.post('/vehicles', vehiclesRoutes.createVehicleItems);
 
 // TODO: delete the above dummy routes and add your actual routes
 

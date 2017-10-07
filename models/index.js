@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 // TODO: include all model files here (and export models together below)
 const testModels = require('./test');
+const vehiclesModel = require('./vehicles');
 
 // connect to Mongo DB
 mongoose.connection.openUri(process.env.MONGODB_URI || process.env.DB_CONN, {}, function(err, conn) {
@@ -16,5 +17,9 @@ mongoose.connection.openUri(process.env.MONGODB_URI || process.env.DB_CONN, {}, 
 
 module.exports = {
   // TODO: add references to all models here
+  ManufacturerInfo: vehiclesModel.ManufacturerInfo,
+  VehicleType: vehiclesModel.VehicleType,
   Test: testModels.Test
 };
+
+

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+console.log('test model running');
 
 const TestSchema = new mongoose.Schema({
   name: {

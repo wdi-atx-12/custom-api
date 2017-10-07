@@ -1,18 +1,23 @@
 const mongoose = require('mongoose');
+console.log('vehicels model run')
 
 const ManufacturerInfoSchema = new mongoose.Schema({
   company: {
-    name: String,
+    type: String,
     unique: true,
     required: true
-  }
+  },
   country: String,
-  vehicleType: Array,
 });
 
-const VehicleInfoSchema = new mongoose.Schema({
+const VehicleTypeSchema = new mongoose.Schema({
   model: {
-    name: String,
+    type: String,
+    unique: true,
+    required: true
+  },
+  year: {
+    type: Number,
     unique: true,
     required: true
   },
@@ -29,11 +34,12 @@ const VehicleInfoSchema = new mongoose.Schema({
 });
 
 
+
 const ManufacturerInfo = mongoose.model('ManufacturerInfo', ManufacturerInfoSchema);
-const VehicleInfo = mongoose.model('VehicleInfo', VehicleInfoSchema);
+const VehicleType = mongoose.model('VehicleType', VehicleTypeSchema);
 
 
 module.exports = {
   ManufacturerInfo: ManufacturerInfo,
-  VehicleInfo: VehicleInfo
+  VehicleType: VehicleType
 };

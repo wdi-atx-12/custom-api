@@ -12,6 +12,18 @@ function getArtworkItems(req, res) {
   });
 }
 
+
+function getArtworkItem(req, res) {
+  db.Artwork.findOne({_id: req.params.id}, function(err,data) {
+    if (err) {
+      console.log('Error retrieving specific artist from DB.', err);
+      res.status(500).send('Internal server error');
+    } else {
+      res.json(data);
+    }
+  });
+}
+
 function createArtworkItem(req, res) {
   const newArtworkItem = db.Artwork({
   artworkName: req.body.artworkName,
@@ -34,5 +46,6 @@ function createArtworkItem(req, res) {
 // functions are exported here so they can be referenced in server.js to respond to incoming requests
 module.exports = {
   getArtworkItems: getArtworkItems,
+  getArtworkItem: getArtworkItem,
   createArtworkItem: createArtworkItem
 };

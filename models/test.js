@@ -9,15 +9,15 @@ const mongoose = require('mongoose');
 
 const FighterSchema = new mongoose.Schema ({
   firstName: String,
-  lastName: String
-  // league_id: Number,
-  // titleHolder: Boolean,
-  // country: String,
-  // team_id: Number,
-  // record: String,
-  // koPercentage: Number,
-  // height: Number,
-  // weight: Number
+  lastName: String,
+  league_id: Number,
+  titleHolder: Boolean,
+  country: String,
+  team_id: Number,
+  record: String,
+  koPercentage: Number,
+  height: Number,
+  weight: Number
 });
 
 // const LeagueSchema = new mongoose.Schema ({

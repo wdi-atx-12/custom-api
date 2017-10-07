@@ -3,7 +3,7 @@ const mongoose = require('mongoose');  //dependency does the heavier lifting to 
 const TestSchema = new mongoose.Schema({   //2 how does my data look/get stored as a variable
   name: {
     type: String,
-    required: cltrue
+    required: true
   },
   count: {
     type: Number,

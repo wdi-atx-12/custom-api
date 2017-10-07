@@ -17,6 +17,14 @@ function createFighterEntree(req, res) {
   const newTestItem = db.Test({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
+    league_id: req.body.league_id,
+    titleHolder: req.body.titleHolder,
+    country: req.body.country,
+    team_id: req.body.team_id,
+    record: req.body.record,
+    koPercentage: req.body.koPercentage,
+    height: req.body.height,
+    weight: req.body.weight
   });
 
   newTestItem.save(function(err, data) {

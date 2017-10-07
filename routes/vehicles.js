@@ -7,7 +7,7 @@ function getVehicleItems(req, res){
   db.VehicleType.find({}, function(err, data){
     if (err) {
       console.log('Error retrieving test items from DB.', err);
-      res.status(500).send('Internal server error');
+      res.status(500).send('Internal server error!');
     } else {
       res.json(data);
     }
@@ -17,14 +17,13 @@ function getVehicleItems(req, res){
 
 function createVehicleItems(req, res){
   const newVehicleItem = db.VehicleType({
-    company: req.body.company,
   });
 
 
   newVehicleItem.save(function(err, data) {
     if (err) {
       console.log('Error saving test item to DB.', err);
-      res.status(500).send('Internal server error');
+      res.status(500).send('Internal server error!!');
     } else {
       res.status(201).json(data);
     }

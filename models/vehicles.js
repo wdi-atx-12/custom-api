@@ -4,22 +4,23 @@ console.log('vehicels model run')
 const ManufacturerInfoSchema = new mongoose.Schema({
   company: {
     type: String,
-    unique: true,
-    required: true
+    // unique: true,
+    // required: true
   },
   country: String,
 });
 
 const VehicleTypeSchema = new mongoose.Schema({
+  name: String,
   model: {
     type: String,
-    unique: true,
-    required: true
+    // unique: true,
+    // required: true
   },
   year: {
     type: Number,
-    unique: true,
-    required: true
+    // unique: true,
+    // required: true
   },
   engineinfo: [{
     engineType: String,

@@ -2,10 +2,11 @@ const db = require('../models');
 
 // get all projects
 function getProjects(req, res) {
+
   db.Project.find({}, function(err, data) {
     if (err) {
-      console.log('Error retrieving test items from DB.', err);
-      res.status(500).send('Internal server error');
+      console.log(`Error, retrieving test items from DB, ${err}`);
+      res.status(500).send(`Internal server error`);
     } else {
       res.json(data);
     }
@@ -14,11 +15,11 @@ function getProjects(req, res) {
 
 // get one single project
 function getProject(req, res) {
-  db.Project.findById(id, function(err, data) {
+  db.Project.findOne({ id: req.params._id }, function(err, data) {
     if (err) {
-      console.log('Error, ', err);
+      console.log(`Error, ${err}`);
     } else {
-      res.json(data);
+      res.send(data);
     }
   })
 }
@@ -42,9 +43,17 @@ function createProject(req, res) {
 }
 
 // update a project
+// function updateProject(req, res) {
+
+//   })
+// }
 
 // delete a project
+// function removeProject(req, res) {
+//   db.Project.findByIdAndRemove({ id: _id }, function(err, data) {
 
+//   })
+// }
 
 module.exports = {
   getProjects: getProjects,

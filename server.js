@@ -10,19 +10,13 @@ app.use(bodyParser.json());
 
 // app routes
 // you can add route handlers directly in this file like this:
-app.get('/', function(req, res) {
-  res.json({
-    // message: 'Hello, world!',
-    // type: 'greeting',
-    // time: new Date()
-  });
-});
 
 
 // or you can import route handlers from other files like this:
 const projectRoutes = require('./routes/projects');
 app.get('/projects', projectRoutes.getProjects);
-app.post('/projects', projectRoutes.createProject);
+app.get('/projects/:id', projectRoutes.getProjects);
+//app.post('/projects', projectRoutes.createProject);
 
 // TODO: delete the above dummy routes and add your actual routes
 

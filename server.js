@@ -8,14 +8,11 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // app routes
-// you can add route handlers directly in this file like this:
-// app.get('/', function(req, res) {
-//   res.json({
-//     message: 'Hello, fish!',
-//     type: 'greeting',
-//     time: new Date()
-//   });
-// });
+// req.query.nameoffield    req.params.nameoffield
+
+
+/* APP ROUTES
+**************/
 
 // Test Controller
 const testRoutes = require('./routes/test');
@@ -23,9 +20,15 @@ app.get('/test', testRoutes.getTestItems);
 app.post('/test', testRoutes.createTestItem);
 
 //Artist Controlller
-const artistRoutes = requie('./routes/artist');
+const artistRoutes = require('./routes/artist');
 app.get('/artist', artistRoutes.getArtistItems);
-//any other artist functions added here.
+app.post('/artist', artistRoutes.createArtistItem);
+
+
+//Artwork controllers
+const artworkRoutes = require('./routes/artwork');
+app.get('/artwork', artworkRoutes.getArtworkItems);
+app.post('/artwork', artworkRoutes.createArtworkItem);
 
 // TODO: delete the above dummy routes and add your actual routes
 

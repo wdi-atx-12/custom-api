@@ -1,8 +1,8 @@
 // this is an example file showing how you might define route handlers
 const db = require('../models');
 
-function getTestItems(req, res) {
-  db.Test.find({}, function(err, data) {
+function getArtworkItems(req, res) {
+  db.Artwork.find({}, function(err, data) {
     if (err) {
       console.log('Error retrieving test items from DB.', err);
       res.status(500).send('Internal server error');
@@ -12,14 +12,16 @@ function getTestItems(req, res) {
   });
 }
 
-function createTestItem(req, res) {
-  const newTestItem = db.Test({
-    name: req.body.name,
-    count: req.body.count,
-    time: req.body.time,
+function createArtworkItem(req, res) {
+  const newArtworkItem = db.Artwork({
+  artworkName: req.body.artworkName,
+  imageUrl: req.body.imageUrl,
+  tags: [ ],
+  location: req.body.location
+  //Artist: ArtistSchema
   });
 
-  newTestItem.save(function(err, data) {
+  newArtworkItem.save(function(err, data) {
     if (err) {
       console.log('Error saving test item to DB.', err);
       res.status(500).send('Internal server error');
@@ -31,6 +33,6 @@ function createTestItem(req, res) {
 
 // functions are exported here so they can be referenced in server.js to respond to incoming requests
 module.exports = {
-  getTestItems: getTestItems,
-  createTestItem: createTestItem
+  getArtworkItems: getArtworkItems,
+  createArtworkItem: createArtworkItem
 };

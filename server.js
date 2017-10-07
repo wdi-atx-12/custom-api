@@ -9,18 +9,23 @@ app.use(bodyParser.json());
 
 // app routes
 // you can add route handlers directly in this file like this:
-app.get('/', function(req, res) {
-  res.json({
-    message: 'Hello, fish!',
-    type: 'greeting',
-    time: new Date()
-  });
+// app.get('/', function(req, res) {
+//   res.json({
+//     message: 'Hello, fish!',
+//     type: 'greeting',
+//     time: new Date()
+//   });
+// });
 
-});
-// or you can import route handlers from other files like this:
+// Test Controller
 const testRoutes = require('./routes/test');
 app.get('/test', testRoutes.getTestItems);
 app.post('/test', testRoutes.createTestItem);
+
+//Artist Controlller
+const artistRoutes = requie('./routes/artist');
+app.get('/artist', artistRoutes.getArtistItems);
+//any other artist functions added here.
 
 // TODO: delete the above dummy routes and add your actual routes
 

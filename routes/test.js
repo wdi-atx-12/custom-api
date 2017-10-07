@@ -3,7 +3,7 @@
 const db = require('../models');
 
 function getFighterInfo(req, res) {
-  db.Fighter.find({}, function(err, data) {
+  db.Test.find({}, function(err, data) {
     if (err) {
       console.log('Error retrieving test items from DB.', err);
       res.status(500).send('Internal server error');
@@ -14,7 +14,7 @@ function getFighterInfo(req, res) {
 }
 
 function createFighterEntree(req, res) {
-  const newTestItem = db.Fighter({
+  const newTestItem = db.Test({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
   });

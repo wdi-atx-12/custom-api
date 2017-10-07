@@ -2,8 +2,8 @@
 
 const db = require('../models');
 
-function getTestItems(req, res) {
-  db.Test.find({}, function(err, data) {
+function getFighterInfo(req, res) {
+  db.Fighter.find({}, function(err, data) {
     if (err) {
       console.log('Error retrieving test items from DB.', err);
       res.status(500).send('Internal server error');
@@ -13,11 +13,10 @@ function getTestItems(req, res) {
   });
 }
 
-function createTestItem(req, res) {
-  const newTestItem = db.Test({
-    name: req.body.name,
-    count: req.body.count,
-    time: req.body.time,
+function createFighterEntree(req, res) {
+  const newTestItem = db.Fighter({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
   });
 
   newTestItem.save(function(err, data) {
@@ -32,6 +31,6 @@ function createTestItem(req, res) {
 
 // functions are exported here so they can be referenced in server.js to respond to incoming requests
 module.exports = {
-  getTestItems: getTestItems,
-  createTestItem: createTestItem,
+  getFighterInfo: getFighterInfo,
+  createFighterEntree: createFighterEntree,
 };

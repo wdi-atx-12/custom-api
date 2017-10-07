@@ -44,8 +44,8 @@ const FighterSchema = new mongoose.Schema ({
 //   }
 // });
 
-const Test = mongoose.model('Test', FighterSchema);
+const Fighter = mongoose.model('Fighter', FighterSchema);
 
 module.exports = {
-  Test: Test
+  Fighter: Fighter
 }

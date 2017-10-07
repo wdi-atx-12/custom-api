@@ -15,8 +15,9 @@ app.use(bodyParser.json());
 // or you can import route handlers from other files like this:
 const projectRoutes = require('./routes/projects');
 app.get('/projects', projectRoutes.getProjects);
-app.get('/projects/:id', projectRoutes.getProjects);
-//app.post('/projects', projectRoutes.createProject);
+app.get('/projects/:id', projectRoutes.getProject);
+app.put('/projects/:id', projectRoutes.updateProject);
+app.post('/projects', projectRoutes.createProject);
 
 // TODO: delete the above dummy routes and add your actual routes
 

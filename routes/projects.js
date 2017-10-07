@@ -43,10 +43,23 @@ function createProject(req, res) {
 }
 
 // update a project
-// function updateProject(req, res) {
+function updateProject(req, res) {
 
-//   })
-// }
+  console.log('req ', req.params)
+  console.log('req.params._id ', req.params._id)
+  db.Project.findByIdAndUpdate(req.params.id, {
+    $set: req.body,
+    new: true
+  }).then((foundItem) => {
+    if (!foundItem) {
+      return res.status(500).send(`Error, ${err}`);
+    }
+    res.send(foundItem);
+  }).catch((err) => {
+
+    res.sendStatus(400).send();
+  })
+}
 
 // delete a project
 // function removeProject(req, res) {
@@ -56,6 +69,8 @@ function createProject(req, res) {
 // }
 
 module.exports = {
+  getProject: getProject,
   getProjects: getProjects,
-  createProject: createProject
+  createProject: createProject,
+  updateProject: updateProject
 };

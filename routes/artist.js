@@ -16,6 +16,8 @@ function getArtistItems(req, res) {
 
 function createArtistItem(req, res) {
   const newArtistItem = db.Artist({
+    userName: req.body.userName,
+    email: req.body.email,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     portraitImg: req.body.portraitImg,

@@ -14,6 +14,19 @@ function getArtistItems(req, res) {
   });
 }
 
+
+function getArtistItem(req, res) {
+  db.Artist.findOne({_id: req.params.id}, function(err,data) {
+    if (err) {
+      console.log('Error retrieving specific artist from DB.', err);
+      res.status(500).send('Internal server error');
+    } else {
+      res.json(data);
+    }
+  });
+};
+
+
 function createArtistItem(req, res) {
   const newArtistItem = db.Artist({
     userName: req.body.userName,
@@ -39,6 +52,7 @@ function createArtistItem(req, res) {
 //export to make your data results available.
 module.exports = {
   getArtistItems: getArtistItems,
+  getArtistItem: getArtistItem,
   createArtistItem: createArtistItem
 }
 

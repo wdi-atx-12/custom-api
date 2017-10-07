@@ -22,7 +22,9 @@ app.post('/test', testRoutes.createTestItem);
 //Artist Controlller
 const artistRoutes = require('./routes/artist');
 app.get('/artist', artistRoutes.getArtistItems);
+app.get('/artist/:id', artistRoutes.getArtistItem);
 app.post('/artist', artistRoutes.createArtistItem);
+
 
 
 //Artwork controllers

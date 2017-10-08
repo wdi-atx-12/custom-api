@@ -18,6 +18,7 @@ app.get('/projects', projectRoutes.getProjects);
 app.get('/projects/:id', projectRoutes.getProject);
 app.put('/projects/:id', projectRoutes.updateProject);
 app.post('/projects', projectRoutes.createProject);
+app.delete('/projects/:id', projectRoutes.removeProject);
 
 // TODO: delete the above dummy routes and add your actual routes
 

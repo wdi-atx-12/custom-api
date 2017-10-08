@@ -57,20 +57,29 @@ function updateProject(req, res) {
     res.send(foundItem);
   }).catch((err) => {
 
-    res.sendStatus(400).send();
+    res.sendStatus(400).send(`Error removing object ${req.params.id}`);
   })
 }
 
 // delete a project
-// function removeProject(req, res) {
-//   db.Project.findByIdAndRemove({ id: _id }, function(err, data) {
-
-//   })
-// }
+function removeProject(req, res) {
+  db.Project.findByIdAndRemove(req.params.id).then(removeProject => {
+    if (!removeProject) {
+      res.sendStatus(400).send(`Error removing object ${req.params.id}`)
+    }
+    res.send({
+      'Removed Project': req.params.name,
+      'Removed ID': req.params.id
+    }).catch((err) => {
+      res.sendStatus(400).send(`Error removing object, ${err}`);
+    })
+  })
+}
 
 module.exports = {
   getProject: getProject,
   getProjects: getProjects,
   createProject: createProject,
-  updateProject: updateProject
+  updateProject: updateProject,
+  removeProject: removeProject
 };

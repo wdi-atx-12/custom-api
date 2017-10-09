@@ -105,10 +105,16 @@ app.get('/trainer/:id', function(req, res) {
 
 app.post('/trainer', function (req, res) {
   var newName = new db.Trainer({
-    trainerData: {
-      name: req.body.name
-    },
+    name: req.body.name,
+    location: req.body.location,
+    pokemon:[]
   });
+
+  newName.save(function (err, name) {
+    res.send(`New Name added: ${name}`)
+    console.log('New name added', name);
+  });
+});
 
 // start app
 app.listen(port, function(err) {

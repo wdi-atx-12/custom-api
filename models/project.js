@@ -10,7 +10,9 @@ const ProjectSchema = new mongoose.Schema({
   developers: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Developer'
-  }]
+  }],
+  timePosted: String,
+  isDeployed: Boolean
 })
 
 const Project = mongoose.model('Project', ProjectSchema);

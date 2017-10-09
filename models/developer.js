@@ -6,7 +6,7 @@ const DevSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  gitHub: {
+  github: {
     type: String,
     required: true
   },

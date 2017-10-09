@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const guitarsModels = require('./guitars');
 
 const GuitaristSchema = new mongoose.Schema({
   name: {
@@ -17,15 +18,11 @@ const GuitaristSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
-  guitars: {
-    type: Array,
-    default: ['']
-  }
-
+  guitars: ['Guitars']
 });
 
 const Guitarist = mongoose.model('Guitarist', GuitaristSchema);
 
 module.exports = {
   Guitarist: Guitarist
-}
+};

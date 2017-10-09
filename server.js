@@ -21,6 +21,10 @@ const guitaristRoutes = require('./routes/guitarists');
 app.get('/guitarists', guitaristRoutes.getGuitarist);
 app.post('/guitarists', guitaristRoutes.createGuitarist);
 
+const guitarsRoutes = require('./routes/guitars');
+app.get('/guitars', guitarsRoutes.getGuitars);
+app.post('/guitars', guitarsRoutes.createGuitars);
+
 // TODO: delete the above dummy routes and add your actual routes
 
 // start app

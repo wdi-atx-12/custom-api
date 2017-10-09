@@ -17,7 +17,7 @@ var eraSchema = new mongoose.Schema(
   stylisticElements: {
     type: String,
     default: ''
-  };
+  }
 });
 
 var Era = mongoose.model('Era', eraSchema);

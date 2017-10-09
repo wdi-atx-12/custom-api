@@ -20,10 +20,11 @@ app.get('/', function(req, res) {
 const guitaristRoutes = require('./routes/guitarists');
 app.get('/guitarists', guitaristRoutes.getGuitarist);
 app.post('/guitarists', guitaristRoutes.createGuitarist);
+app.put('/guitarists/:id', guitaristRoutes.updateGuitarist);
 
-const guitarsRoutes = require('./routes/guitars');
-app.get('/guitars', guitarsRoutes.getGuitars);
-app.post('/guitars', guitarsRoutes.createGuitars);
+// const guitarsRoutes = require('./routes/guitars');
+// app.get('/guitars', guitarsRoutes.getGuitars);
+// app.post('/guitars', guitarsRoutes.createGuitars);
 
 // TODO: delete the above dummy routes and add your actual routes
 

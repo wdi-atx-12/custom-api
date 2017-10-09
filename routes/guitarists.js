@@ -2,6 +2,8 @@
 
 const db = require('../models');
 
+
+
 function getGuitarist(req, res) {
   db.Guitarist.find({}, function(err, data) {
     if (err) {
@@ -13,10 +15,12 @@ function getGuitarist(req, res) {
   });
 }
 
+
+
 function createGuitarist(req, res) {
   const newGuitarist = db.Guitarist({
     name: req.body.name,
-    count: req.body.count,
+    age: req.body.count,
     dateStarted: req.body.dateStarted,
     playStyle: req.body.playStyle,
     guitars: req.body.guitars
@@ -32,8 +36,34 @@ function createGuitarist(req, res) {
   });
 }
 
+
+
+function updateGuitarist(res, req) {
+  console.log('HEY')
+  var guitaristId = req.params.id;
+  var update = {
+    name: req.body.name,
+    age: req.body.count,
+    dateStarted: req.body.dateStarted,
+    playStyle: req.body.playStyle,
+    guitars: req.body.guitars
+  };
+
+  db.Guitarist.findOneAndUpdate({_id: guitaristId}, update, function(err, data) {
+    if (err) {
+      console.log('Error updating guitarist to DB.', err);
+      res.status(500).send('Internal server error');
+    } else {
+      res.status(201).json(data);
+    }
+  })
+}
+
+
+
 // functions are exported here so they can be referenced in server.js to respond to incoming requests
 module.exports = {
   getGuitarist: getGuitarist,
   createGuitarist: createGuitarist,
+  updateGuitarist: updateGuitarist
 };

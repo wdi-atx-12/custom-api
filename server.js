@@ -21,6 +21,9 @@ const eraRoutes = require('./routes/era');
 app.get('/era', eraRoutes.getAllEras);
 app.post('/era', eraRoutes.createEra);
 
+const composerRoutes = require('./routes/composers');
+app.get('/composers', composerRoutes.getComposers);
+app.post('/composers', composerRoutes.createComposers);
 // TODO: delete the above dummy routes and add your actual routes
 
 // start app

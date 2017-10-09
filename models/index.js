@@ -17,8 +17,8 @@ mongoose.connection.openUri(process.env.MONGODB_URI || process.env.DB_CONN, {}, 
 
 module.exports = {
   // TODO: add references to all models here
-  ManufacturerInfo: vehiclesModel.ManufacturerInfo,
-  VehicleType: vehiclesModel.VehicleType,
+  Manufacturer: vehiclesModel.Manufacturer,
+  Vehicles: vehiclesModel.Vehicles,
   Test: testModels.Test
 };
 

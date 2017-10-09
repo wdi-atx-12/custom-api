@@ -11,18 +11,17 @@ const ManufacturerInfoSchema = new mongoose.Schema({
 });
 
 const VehicleTypeSchema = new mongoose.Schema({
-  name: String,
   model: {
     type: String,
     // unique: true,
     // required: true
   },
   year: {
-    type: Number,
+    type: String,
     // unique: true,
     // required: true
   },
-  engineinfo: [{
+  engineInfo: [{
     engineType: String,
     sizeLiters: String,
     fuelEconomy: String,
@@ -36,11 +35,11 @@ const VehicleTypeSchema = new mongoose.Schema({
 
 
 
-const ManufacturerInfo = mongoose.model('ManufacturerInfo', ManufacturerInfoSchema);
-const VehicleType = mongoose.model('VehicleType', VehicleTypeSchema);
+const Manufacturer = mongoose.model('Manufacturer', ManufacturerInfoSchema);
+const Vehicles = mongoose.model('Vehicles', VehicleTypeSchema);
 
 
 module.exports = {
-  ManufacturerInfo: ManufacturerInfo,
-  VehicleType: VehicleType
+  Manufacturer: Manufacturer,
+  Vehicles: Vehicles
 };

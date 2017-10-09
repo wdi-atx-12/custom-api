@@ -9,18 +9,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
+// CRUD POKEMON DATA
   app.get('/pokemon', function(req, res) {
     db.Pokemon.find({}, function(err, data) {
-      if (err) {
-        res.status(500).send('Error getting data.');
-      } else {
-        res.json(data);
-      }
-    });
-  });
-
-  app.get('/trainer', function(req, res) {
-    db.Trainer.find({}, function(err, data) {
       if (err) {
         res.status(500).send('Error getting data.');
       } else {
@@ -64,7 +55,10 @@ app.put('/pokemon/:id', function(req, res) {
     pokemonData: {
       name: req.body.pokemonData.name,
       pokedexNumber: req.body.pokemonData.pokedexNumber,
-      pokemonType: req.body.pokemonData.pokemonType
+      pokemonType: req.body.pokemonData.pokemonType,
+      specialAbility: req.body.pokemonData.specialAbility,
+      height: req.body.pokemonData.height,
+      weight: req.body.pokemonData.weight
     },
     // baseStats: {}
   };
@@ -78,6 +72,43 @@ app.put('/pokemon/:id', function(req, res) {
     }
   });
 });
+
+app.delete('/pokemon/:id', function(req, res) {
+  var pokemonId = req.params.id;
+  db.Pokemon.findOneAndRemove({_id: pokemonId}, function(err, deletePokemon) {
+    res.json(deletePokemon);
+  });
+  console.log('Pokemon Deleted', req.params);
+});
+
+// CRUD TRAINER DATA
+app.get('/trainer', function(req, res) {
+  db.Trainer.find({}, function(err, data) {
+    if (err) {
+      res.status(500).send('Error getting data.');
+    } else {
+      res.json(data);
+    }
+  });
+});
+
+app.get('/trainer/:id', function(req, res) {
+  var trainerId = req.params.id;
+  db.Trainer.findOne({_id: trainerId}, function(err, foundTrainer) {
+    if (err) {
+      res.status(500).send('Error retreiving data.');
+    } else {
+      res.json(foundTrainer);
+    }
+  })
+});
+
+app.post('/trainer', function (req, res) {
+  var newName = new db.Trainer({
+    trainerData: {
+      name: req.body.name
+    },
+  });
 
 // start app
 app.listen(port, function(err) {

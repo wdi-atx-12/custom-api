@@ -8,7 +8,7 @@ const LabelSchema = new mongoose.Schema({
     unique: true
   },
   location: String,
-  established: Date,
+  established: Number,
   bands: String,
   // {
   //   type: mongoose.Schema.Types.ObjectId,

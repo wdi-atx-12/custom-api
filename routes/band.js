@@ -1,9 +1,10 @@
 const db = require('../models');
 
-function DisplayBand(req, res) {
-  db.Band.find({}, function(err, data) {
+function displayBandItems(req, res) {
+  db.Band.find({}, function(err, data){
+    // console.log('am i working', db);
     if (err) {
-      console.log('Error retrieving test items from DB.', err);
+      console.log('Error retrieving band items from DB.', err);
       res.status(500).send('Internal server error');
     } else {
       res.json(data);
@@ -11,16 +12,25 @@ function DisplayBand(req, res) {
   });
 }
 
-function CreateBand(req, res) {
-  const newTestItem = db.Band({
+function createBandItem(req, res) {
+  const newBandItem = db.Band({
     name: req.body.name,
-    origin: req.body.count,
-    genre: req.body.time,
-    established: req.body.time,
+    origin: req.body.origin,
+    genre: req.body.genre,
+    established: req.body.established
   });
-}
 
+newBandItem.save(function(err, data){
+  if (err){
+    console.log('error saving band item to data bas', err);
+    res.status(500).send('Internal server error');
+  } else {
+    res.status(201).json(data);
+  }
+
+});
+}
 module.exports = {
-  DisplayBand: DisplayBand,
-  CreateBand: CreateBand
+  displayBandItems: displayBandItems,
+  createBandItem: createBandItem
 }

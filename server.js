@@ -1,7 +1,7 @@
 // dependencies
 const express = require('express');
 const bodyParser = require('body-parser');
-
+const db = require('./models')
 // app config
 const app = express();
 const port = process.env.PORT || 3000;
@@ -16,10 +16,23 @@ app.get('/', function(req, res) {
     time: new Date()
   });
 });
+
+app.get('/band', function(err, res){
+
+    if(err){
+      res.status(500).send('error retrieving data.');
+    } else{
+      res.json(data);
+    }
+
+});
+
+
 // or you can import route handlers from other files like this:
-const testRoutes = require('./routes/test');
-app.get('/test', testRoutes.getTestItems);
-app.post('/test', testRoutes.createTestItem);
+const getBands = require('./routes/band');
+app.get('/band', getBands.DisplayBand);
+app.post('/band', getBands.DisplayBand);
+
 
 // TODO: delete the above dummy routes and add your actual routes
 

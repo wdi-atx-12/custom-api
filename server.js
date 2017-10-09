@@ -1,6 +1,7 @@
 // dependencies
 const express = require('express');
 const bodyParser = require('body-parser');
+const models = require('./models');
 
 // app config
 const app = express();
@@ -16,6 +17,13 @@ app.get('/', function(req, res) {
     time: new Date()
   });
 });
+
+const bandRoutes = require('./routes/bands');
+app.get('/bands', bandRoutes.getAllBands);
+
+const labelRoutes = require('./routes/labels');
+app.get('/labels', labelRoutes.getAllLabels)
+
 // or you can import route handlers from other files like this:
 const testRoutes = require('./routes/test');
 app.get('/test', testRoutes.getTestItems);

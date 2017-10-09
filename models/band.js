@@ -9,10 +9,6 @@ const BandSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
-  upcomingShows: {
-    type: Array,
-    default: []
-  },
   website: {
     type: String,
     default: ''

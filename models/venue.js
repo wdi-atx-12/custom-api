@@ -9,10 +9,6 @@ const VenueSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
-  showSchedule: {
-    type: Array,
-    default: []
-  },
   website: {
     type: String,
     default: ''

@@ -1,16 +1,19 @@
 const mongoose = require('mongoose');
 
 const ShowSchema = new mongoose.Schema({
-  bands: {
-    type: Array,
-    default: []
-  },
+  bands: [{
+    band: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Band'
+    }
+  }],
   date: {
     type: Date,
     required: true
   },
   venue: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Venue',
     required: true
   },
   time: {

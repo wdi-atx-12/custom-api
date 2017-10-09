@@ -8,6 +8,7 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // app routes
+app.get('/', (req, res) => { res.redirect('/shows') });
 
 const showRoutes = require('./routes/shows');
 app.get('/shows', showRoutes.getAllShows);

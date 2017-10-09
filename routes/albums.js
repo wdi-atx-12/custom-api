@@ -1,7 +1,7 @@
 const db = require('../models');
 
-function displayBandItems(req, res) {
-  db.Band.find({}, function(err, data){
+function displayAlbumItems(req, res) {
+  db.Album.find({}, function(err, data){
     // console.log('am i working', db);
     if (err) {
       console.log('Error retrieving band items from DB.', err);
@@ -11,8 +11,8 @@ function displayBandItems(req, res) {
     }
   });
 }
-function displayBandItem(req, res) {
-  db.Band.findOne({_id: req.params.id}, function(err, data){
+function displayAlbumItem(req, res) {
+  db.Album.findOne({_id: req.params.id}, function(err, data){
     // console.log('am i working', db);
     if (err) {
       console.log('Error retrieving band items from DB.', err);
@@ -22,12 +22,12 @@ function displayBandItem(req, res) {
     }
   });
 }
-function createBandItem(req, res) {
-  const newBandItem = db.Band({
+function createAlbumItem(req, res) {
+  const newAlbumItem = db.Album({
     name: req.body.name,
-    origin: req.body.origin,
-    genre: req.body.genre,
-    established: req.body.established
+    imageUrl: req.body.imageUrl,
+    tags: []
+
   });
 
 newBandItem.save(function(err, data){
@@ -41,7 +41,7 @@ newBandItem.save(function(err, data){
 });
 }
 module.exports = {
-  displayBandItems: displayBandItems,
-  createBandItem: createBandItem,
-  displayBandItem: displayBandItem
+  displayAlbumItems: displayAlbumItems,
+  createAlbumItem: createAlbumItem,
+  displayAlbumItem: displayAlbumItem
 }

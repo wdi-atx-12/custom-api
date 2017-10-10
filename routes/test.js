@@ -53,7 +53,7 @@ function updateFighterInfo(req, res){
     _id: req.params.id
   },
   {$set: req.body},
-    {upsert: true},
+    {new: true},
     function(err, newFighter){
       if(err){
       console.log("Error updating fighter")

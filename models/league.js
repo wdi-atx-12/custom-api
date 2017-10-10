@@ -9,6 +9,13 @@ const LeagueSchema = new Schema ({
   owner: String
 });
 
+// var ufcLeague = new db.League ({
+//   name: "Ultimate Fighting Championship",
+//   established: 1993,
+//   headquarters: "Las Vegas",
+//   owner: "Danna White"
+// })
+
 //LEAGUE MODEL
 const League = mongoose.model("League", LeagueSchema);
 

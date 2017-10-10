@@ -83,3 +83,21 @@ Be sure to test your endpoints as you go in Postman. Also don't forget to commit
 - **Add even more schemas/models/enpoints.** Thinking of more detailed information is usually fairly easy, but the code to support it gets more difficult the more detail is added.
 - **Add support for query parameters** to limit/filter responses on your endpoints that retrieve all resources in a collection. For example, you might limit items based on rating, time/date range, tags, etc.
 - **Document all the endpoints of your API** in a markdown file. What does each endpoint do? How should a new user of your API get started?
+
+## Step 6: Add A README.md
+
+A README is a consumer's first -- and maybe only -- look into your creation. The README is important for users to understand what it is they're looking at and how to use the code. It's up to the creator to prove that their work is a shining gem.
+
+For your custom API, please create a README that details the following:
+
+1. Description of what the API does
+2. URL as deployed on Heroku
+3. Maps out the API endpoints (method + path combos)
+  - brief description of each endpoint
+  - what's the expected response
+  - any relevant options (i.e.query string options)
+4. Provides a basic model structure
+  - includes properties of each model
+  - requirements for creation
+
+> Here is a curated list of [AWESOME READMEs](https://github.com/matiassingers/awesome-readme) for inspiration. 

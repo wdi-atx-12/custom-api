@@ -68,7 +68,7 @@ app.put('/pokemon/:id', function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      console.log('COME BACK TO ME');
+      console.log('COME BACK TO ME POKEMON!');
     }
   });
 });
@@ -107,12 +107,30 @@ app.post('/trainer', function (req, res) {
   var newName = new db.Trainer({
     name: req.body.name,
     location: req.body.location,
-    pokemon:[]
+    // pokemon:[]
   });
 
   newName.save(function (err, name) {
     res.send(`New Name added: ${name}`)
     console.log('New name added', name);
+  });
+});
+
+app.put('/trainer/:id', function(req, res) {
+  var trainerId = req.params.id;
+  var updateTrainer = {
+      name: req.body.name,
+      location: req.body.location,
+      pokemon: []
+  };
+
+  db.Trainer.findByIdAndUpdate({_id: trainerId}, updateTrainer, (err, updateTrainer) => {
+    res.json(updateTrainer);
+    if (err) {
+      console.log(err);
+    } else {
+      console.log('COME BACK TO ME POKEMON!');
+    }
   });
 });
 

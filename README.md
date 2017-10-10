@@ -93,11 +93,11 @@ For your custom API, please create a README that details the following:
 1. Description of what the API does
 2. URL as deployed on Heroku
 3. Maps out the API endpoints (method + path combos)
-  - brief description of each endpoint
-  - what's the expected response
-  - any relevant options (i.e.query string options)
+      - brief description of each endpoint
+      - what's the expected response
+      - any relevant options (i.e.query string options)
 4. Provides a basic model structure
-  - includes properties of each model
-  - requirements for creation
+      - includes properties of each model
+      - requirements for creation
 
 > Here is a curated list of [AWESOME READMEs](https://github.com/matiassingers/awesome-readme) for inspiration. 

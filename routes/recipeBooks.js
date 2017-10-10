@@ -4,12 +4,12 @@ const db = require('../models');
 //get all recipe books
 function getRecipeBook(req, res){
   db.RecipeBook.find()
-    .populate('recipe')
+    .populate('recipes')
     .exec(function(err,recipeBooks){
       if(err){
         return console.log("Index error: "+err);
       }
-      console.log("Got all recipes!");
+      console.log("Got all recipe books!");
       res.json(recipeBooks);
     })
 };
@@ -17,10 +17,22 @@ function getRecipeBook(req, res){
 //get one recipe book
 function getOneRecipeBook(req,res){
   const recipeBookId = req.params.id;
-  db.RecipeBook.findOne({_id: recipeBookId}, function(err, foundRecipeBook){
+  db.RecipeBook.findOne({_id: recipeBookId})
+  .populate('recipes')
+  .exec(function(err, foundRecipeBook){
+    if(err){
+      return console.log("Index error: "+err);
+    }
+    console.log("Got One Recipe book!")
     res.json(foundRecipeBook);
   })
 };
+// function function(req, res){
+//   const recipeId = req.params.recipe.id;
+//   db.Recipe.findOne({_id: recipeId}, function(err, foundRecipe){
+//     res.json(foundRecipe);
+//   })
+// });
 // create new recipe book
 function createNewRecipeBook(req,res){
   var newRecipeBook = new db.RecipeBook({
@@ -42,11 +54,12 @@ function createNewRecipeBook(req,res){
 //update book
 function updateRecipeBook(req,res){
   var recipeBookId = req.params.id;
-  var newRecipeBook = {
-    name: req.body.name,
-    user: req.body.user
-  };
-  db.RecipeBook.findByIdAndUpdate(recipeBookId, newRecipeBook, {return: true}, function(err, updatedRecipeBook){
+  // var newRecipeBook = {
+  //   name: req.body.name,
+  //   user: req.body.user
+  // };
+  var newRecipeBook = req.body;
+  db.RecipeBook.findByIdAndUpdate({_id: recipeBookId}, newRecipeBook, {new: true}, function(err, updatedRecipeBook){
     res.json(updatedRecipeBook);
   })
 };

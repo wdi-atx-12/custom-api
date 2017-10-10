@@ -14,7 +14,7 @@ const RecipeSchema = new mongoose.Schema({
   tags: [{
     type: String,
     default: ""
-  }],
+  }]
   // recipeBook: {
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: "RecipeBook"

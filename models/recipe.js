@@ -15,10 +15,10 @@ const RecipeSchema = new mongoose.Schema({
     type: String,
     default: ""
   }],
-  recipeBook: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "RecipeBook"
-  }
+  // recipeBook: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "RecipeBook"
+  // }
 });
 
 const Recipe = mongoose.model('Recipe', RecipeSchema);

@@ -2,26 +2,16 @@
 const db = require('../models');
 
 //get all recipes
-function getRecipes(req, res){
-  db.Recipe.find()
-  .populate('RecipeBook')
-  .exec(function (err, recipe){
-    if(err){
-      return console.log("Index error: "+ err);
-    }
-    console.log("got all recipes!");
-     res.json(recipe);
-  })
-};
 
-//   , function(err, data){
-//     if(err){
-//     res.status(500).send('Error retrieving data.');
-//     }else{
-//     res.json(data);
-//     }
-//   });
-// }
+function getRecipes(req, res){
+  db.Recipe.find({}, function(err,data){
+    if(err){
+      res.status(500).send('Error retireving data');
+    }else{
+      res.json(data);
+    }
+  });
+}
 
 //get one recipe
 function getOneRecipe(req, res){
@@ -41,25 +31,14 @@ function createRecipe(req, res){
     instructions: req.body.instructions,
     tags: req.body.tags
   });
-  db.RecipeBook.findOne({recipes: req.body.recipeBook}, function(err, recipeBook){
-    newRecipe.recipeBook = recipeBook;
-    newRecipe.save(function(err,newRecipe){
-      if(err){
-        return console.log("create error: "+ err);
-      }
-      console.log("created: ", newRecipe.name);
-      res.json(newRecipe)
-    });
+  newRecipe.save(function(err,newRecipe){
+    if(err){
+      return console.log("create error: "+ err);
+    }
+    console.log("created ", newRecipe.name);
+    res.json(newRecipe);
   });
 };
-//   newRecipe.save(function(err,newRecipe){
-//     if(err){
-//       return console.log("create error: "+ err);
-//     }
-//     console.log("created ", newRecipe.name);
-//     res.json(newRecipe);
-//   });
-// };
 
 
 //update recipe

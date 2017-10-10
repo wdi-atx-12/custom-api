@@ -4,7 +4,7 @@ const db = require('../models');
 //get all recipe books
 function getRecipeBook(req, res){
   db.RecipeBook.find()
-    .populate('Recipe')
+    .populate('recipe')
     .exec(function(err,recipeBooks){
       if(err){
         return console.log("Index error: "+err);

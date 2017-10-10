@@ -1,5 +1,6 @@
 //handles requests for /bands
-
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const db = require('../models');
 
 function getAllBands(req, res){
@@ -15,17 +16,20 @@ function getAllBands(req, res){
 
 function createNewBand(req, res){
   const newBandItem = db.Band({
+    _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
     established: req.body.established,
     hometown: req.body.hometown,
     label: req.body.label,
     genre: req.body.genre
   })
+
   newBandItem.save(function (err, data){
     if(err){
       console.log('Error saving band to DB.', err);
       res.status(500).send('Internal server error.');
     }else{
+      db.Label.find({_id:req.body.label}).populate('bands');
       res.status(201).json(data);
     }
   });

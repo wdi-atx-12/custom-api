@@ -1,5 +1,6 @@
 //handles requests for /labels
-
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 const db = require('../models');
 
 function getAllLabels(req, res){
@@ -14,6 +15,7 @@ function getAllLabels(req, res){
 
 function createNewLabel(req, res){
   const newLabelItem = db.Label({
+    _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
     location: req.body.location,
     established: req.body.established,
@@ -26,6 +28,7 @@ function createNewLabel(req, res){
       console.log('Error saving band to DB.', err);
       res.status(500).send('Internal server error.');
     }else{
+      db.Band.find({_id:req.body.bands}).populate('label');
       res.status(201).json(data);
     }
   });

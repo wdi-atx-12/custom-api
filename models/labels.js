@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const LabelSchema = new mongoose.Schema({
+  _id: Schema.Types.ObjectId,
   name: {
     type: String,
     required: true,
@@ -15,11 +16,12 @@ const LabelSchema = new mongoose.Schema({
     type: Number,
     default: ""
   },
-  bands: String,
-    // [{
-    //   type: Schema.Types.ObjectId,
-    //   ref: 'Band'
-    // }],
+  bands:
+    [{
+      type: Schema.Types.ObjectId,
+      ref: 'Band',
+      // default: ""
+    }],
   genre: {
     type: String,
     default: ""

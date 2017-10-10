@@ -15,9 +15,21 @@ const orderRoutes = require('./routes/orders'),
 app.get('/newOrder', orderRoutes.getOrders);
 app.post('/newOrder', orderRoutes.createOrder);
 app.get('/newOrder/:id', orderRoutes.findByIdOrders);
-//app.put('/newOrder/:id', orderRoutes.changeOrder);
-//app.delete('/newOrder/:id', orderRoutes.deleteOrder);
-//app.get('/newOrder/:id', routes.getOrderById);
+//app.put('/newOrderChange/:id', orderRoutes.changeOrder);
+
+
+app.delete('/removeOrder/:id', function deleteOrder(req, res) {
+  console.log('entree delete', req.params.id);
+  db.Order.findOneAndRemove({ _id: req.params.id },
+    function(err){
+      if (err) {
+          console.log(err)
+      }
+      else {
+         return res.send("Removed");
+      }
+  });
+});
 
 //entree stuff
 app.get('/newEntrees', entreeRoutes.getEntrees);

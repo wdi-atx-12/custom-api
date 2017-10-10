@@ -39,26 +39,9 @@ function findByIdOrders(req, res) {
   });
 };
 
-// function changeOrder(req, res) {
-//   var orderId = req.params.id;
-//   db.Order.findOne
-// }
-function deleteEntree(req, res) {
-  // get book id from url params (`req.params`)
-  console.log('entree delete', req.params);
-  var orderId = req.params.id;
-  // find the index of the book we want to remove
-  db.Order.findOneAndRemove({ _id: orderId })
-    .populate('custName')
-    .exec(function (err, deletedBook) {
-      res.json(deleteEntree);
-  });
-};
-
 // functions are exported here so they can be referenced in server.js to respond to incoming requests
 module.exports = {
   getOrders: getOrders,
   createOrder: createOrder,
   findByIdOrders: findByIdOrders,
-  deleteEntree: deleteEntree
 };

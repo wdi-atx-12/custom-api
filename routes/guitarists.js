@@ -20,7 +20,7 @@ function getGuitarist(req, res) {
 function createGuitarist(req, res) {
   const newGuitarist = db.Guitarist({
     name: req.body.name,
-    age: req.body.count,
+    age: req.body.age,
     dateStarted: req.body.dateStarted,
     playStyle: req.body.playStyle,
     guitars: req.body.guitars
@@ -38,12 +38,11 @@ function createGuitarist(req, res) {
 
 
 
-function updateGuitarist(res, req) {
-  console.log('HEY')
+function updateGuitarist(req, res) {
   var guitaristId = req.params.id;
   var update = {
     name: req.body.name,
-    age: req.body.count,
+    age: req.body.age,
     dateStarted: req.body.dateStarted,
     playStyle: req.body.playStyle,
     guitars: req.body.guitars
@@ -60,10 +59,33 @@ function updateGuitarist(res, req) {
 }
 
 
+function deleteGuitarist(req, res) {
+  console.log('HEY')
+  var guitaristId = req.params.id;
+  var removeGuitarist = {
+    name: req.body.name,
+    age: req.body.age,
+    dateStarted: req.body.dateStarted,
+    playStyle: req.body.playStyle,
+    guitars: req.body.guitars
+  };
+
+  db.Guitarist.remove({_id: guitaristId}, function(err, data) {
+    if (err) {
+      console.log('Error deleting guitarist to DB.', err);
+      res.status(500).send('Internal server error');
+    } else {
+      res.status(201).json(data);
+    }
+  })
+}
+
+
 
 // functions are exported here so they can be referenced in server.js to respond to incoming requests
 module.exports = {
   getGuitarist: getGuitarist,
   createGuitarist: createGuitarist,
-  updateGuitarist: updateGuitarist
+  updateGuitarist: updateGuitarist,
+  deleteGuitarist: deleteGuitarist
 };

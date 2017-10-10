@@ -21,21 +21,8 @@ const guitaristRoutes = require('./routes/guitarists');
 app.get('/guitarists', guitaristRoutes.getGuitarist);
 app.post('/guitarists', guitaristRoutes.createGuitarist);
 app.put('/guitarists/:id', guitaristRoutes.updateGuitarist);
-
-// const guitarsRoutes = require('./routes/guitars');
-// app.get('/guitars', guitarsRoutes.getGuitars);
-// app.post('/guitars', guitarsRoutes.createGuitars);
-
-// TODO: delete the above dummy routes and add your actual routes
+app.delete('/guitarists/:id', guitaristRoutes.deleteGuitarist);
 
 // start app
 
 app.listen(process.env.PORT || 3000)
-
-// app.listen(port, function(err) {
-//   if (err) {
-//     console.log(`Error starting server on port ${port}`, err);
-//   } else {
-//     console.log(`Server running on port ${port}.`);
-//   }
-// });

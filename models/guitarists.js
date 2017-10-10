@@ -7,16 +7,8 @@ const GuitaristSchema = new mongoose.Schema({
     required: true
   },
   age: {
-    type: Number,
-    default: 42
-  },
-  dateStarted: {
-    type: Date,
-    default: Date.now
-  },
-  playStyle: {
     type: String,
-    default: ''
+    default: '42'
   },
   guitars: [{
         name: {
@@ -32,8 +24,8 @@ const GuitaristSchema = new mongoose.Schema({
           default: ''
         },
         year: {
-          type: Number,
-          default: 27
+          type: String,
+          default: "1969"
         },
         origin: {
           type: String,

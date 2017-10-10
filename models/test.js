@@ -1,49 +1,24 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-// const TeamSchema = new mongoose.Schema ({
-//   _id: Number,
-//   established: Number,
-//   foundedBy: String,
-//   facilities: String
-// });
-
-const FighterSchema = new mongoose.Schema ({
+//FIGHTER SCHEMA
+const FighterSchema = new Schema ({
   firstName: String,
   lastName: String,
-  league_id: Number,
+  league: {
+    type: Schema.ObjectId,
+    ref: "League"
+  },
   titleHolder: Boolean,
   country: String,
-  team_id: Number,
-  record: String,
-  koPercentage: Number,
-  height: Number,
-  weight: Number
+  team: {
+    type: Schema.ObjectId,
+    ref: "Team"
+  },
+  record: String
 });
 
-// const LeagueSchema = new mongoose.Schema ({
-//   _id: Number,
-//   name: String,
-//   established: Number,
-//   headquarters: String,
-//   owner: String
-// });
-
-
-// const TestSchema = new mongoose.Schema({
-//   name: {
-//     type: String,
-//     required: true
-//   },
-//   count: {
-//     type: Number,
-//     default: 42
-//   },
-//   time: {
-//     type: Date,
-//     default: Date.now
-//   }
-// });
-
+//FIGHTER MODEL
 const Fighter = mongoose.model('Fighter', FighterSchema);
 
 module.exports = {

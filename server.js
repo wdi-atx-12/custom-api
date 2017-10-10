@@ -19,8 +19,17 @@ app.get('/', function(req, res) {
 });
 // or you can import route handlers from other files like this:
 const testRoutes = require('./routes/test');
+//get all fighter
 app.get('/fighters', testRoutes.getFighterInfo);
+//get fighter by id
+app.get('/fighters/:id', testRoutes.getOneFighter);
+//create new fighter
 app.post('/fighters', testRoutes.createFighterEntree);
+//update fighter's info
+app.put('/fighters/:id', testRoutes.updateFighterInfo);
+//delete fighter
+// app.delete('/fighters/:id', testRoutes.removeFighter);
+
 
 // TODO: delete the above dummy routes and add your actual routes
 

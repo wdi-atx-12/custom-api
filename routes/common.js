@@ -36,8 +36,9 @@ function insertSimpleItem(req, res, DbSchema) {
 }//end of insertSimpleItem()
 
 function updateSimpleItem(req, res, DbSchema) {
-	var changeItem = getObjectFromKeyValuePairs(req.body);
-	DbSchema.update({_id: req.params.id}, {$set: changeItem}, {new:true, runValidators: true}, (err, fItem) => {
+	//var changeItem = getObjectFromKeyValuePairs();
+	DbSchema.update({_id: req.params.id}, {$set: req.body}, {new:true}, (err, fItem) => {
+		if (err) { return console.log("index error: " + err); }
 		res.json(fItem);
 	});
 }//end of updateSimpleItem()

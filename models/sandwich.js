@@ -4,7 +4,8 @@ const SandwichMenu = mongoose.model('SandwichMenu', new mongoose.Schema({
 	sandwich: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Sandwich'
-	}
+	},
+	name: { type: String }
 }));
 
 const Sandwich = mongoose.model('Sandwich', new mongoose.Schema({

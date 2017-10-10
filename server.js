@@ -29,7 +29,9 @@ const beverageRoutes = require('./routes/beverages');
 const toppingRoutes = require('./routes/toppings');
 const dessertRoutes = require('./routes/desserts');
 const sandwichRoutes = require('./routes/sandwichs');
-//const sandwichMenuRoutes = require('./routes/sandwichMenu');
+const sandwichMenuRoutes = require('./routes/sandwichmenus');
+
+const orderRoutes = require('./routes/orders');
 
 
 
@@ -43,7 +45,7 @@ app.get('/', function (req, res) {
 });
 
 var routeRoot = "/api";
-var bases = ["beverage","topping","dessert","sandwich"];
+var bases = ["beverage","topping","dessert","sandwich","sandwichMenu","order"];
 var endpoints = {
 	"selectAllItems": {base: "", action: 'get', 	route: "", 		params: []},
 	"selectItem"	: {base: "", action: 'get', 	route: "/:<>", 	params: ["id"]},

@@ -5,21 +5,33 @@ const bodyParser = require('body-parser');
 // app config
 const app = express();
 const port = process.env.PORT || 3000;
+
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // app routes
-// you can add route handlers directly in this file like this:
-app.get('/', function(req, res) {
-  res.json({
-    message: 'Hello, world!',
-    type: 'greeting',
-    time: new Date()
-  });
-});
-// or you can import route handlers from other files like this:
-const testRoutes = require('./routes/test');
-app.get('/test', testRoutes.getTestItems);
-app.post('/test', testRoutes.createTestItem);
+app.get('/', (req, res) => { res.redirect('/shows') });
+
+const showRoutes = require('./routes/shows');
+app.get('/shows', showRoutes.getAllShows);
+app.get('/shows/:id', showRoutes.getShow);
+app.post('/shows', showRoutes.addShow);
+app.put('/shows/:id', showRoutes.updateShow);
+app.delete('/shows/:id', showRoutes.deleteShow);
+
+const venueRoutes = require('./routes/venues');
+app.get('/venues', venueRoutes.getAllVenues);
+app.get('/venues/:id', venueRoutes.getVenue);
+app.post('/venues', venueRoutes.addVenue);
+app.put('/venues/:id', venueRoutes.updateVenue);
+app.delete('/venues/:id', venueRoutes.deleteVenue);
+
+const bandRoutes = require('./routes/bands');
+app.get('/bands', bandRoutes.getAllBands);
+app.get('/bands/:id', bandRoutes.getBand);
+app.post('/bands', bandRoutes.addBand);
+app.put('/bands/:id', bandRoutes.updateBand);
+app.delete('/bands/:id', bandRoutes.deleteBand);
 
 // TODO: delete the above dummy routes and add your actual routes
 

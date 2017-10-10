@@ -40,8 +40,29 @@ newBandItem.save(function(err, data){
 
 });
 }
+function updateBandItem(req,res){
+    var updateBand = db.params.id;
+    var update ={
+    name: req.body.name,
+    origin: req.body.origin,
+    genre: req.body.genre,
+    established: req.body.established
+
+  db.Band.findOne({_id: req.params.id}, function(err, data){
+    if (err) {
+      console.log('Error retrieving band items from DB.', err);
+      res.status(500).send('Internal server error');
+    } else {
+      res.json(data);
+    }
+  }
+  };
+});
+
+
 module.exports = {
   displayBandItems: displayBandItems,
   createBandItem: createBandItem,
-  displayBandItem: displayBandItem
+  displayBandItem: displayBandItem,
+  updateBandItem: updateBandItem
 }

@@ -12,13 +12,15 @@ const bandRoutes = require('./routes/band');
 app.get('/band', bandRoutes.displayBandItems);
 app.get('/band/:id', bandRoutes.displayBandItem);
 app.post('/band', bandRoutes.createBandItem);
-
+app.put('/band/:id', bandRoutes.updateBandItem)
 
 //album routes
 const albumRoutes = require('./routes/albums');
 app.get('/album', albumRoutes.displayAlbumItems);
 app.get('/album/:id', albumRoutes.displayAlbumItem);
 app.post('/album', albumRoutes.createAlbumItem);
+app.put('/album/:id',albumRoutes.updateAlbumItem)
+
 
 
 // start app

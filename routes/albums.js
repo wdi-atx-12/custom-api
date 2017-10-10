@@ -30,7 +30,7 @@ function createAlbumItem(req, res) {
 
   });
 
-newBandItem.save(function(err, data){
+newAlbumItem.save(function(err, data){
   if (err){
     console.log('error saving band item to data bas', err);
     res.status(500).send('Internal server error');
@@ -40,8 +40,19 @@ newBandItem.save(function(err, data){
 
 });
 }
+
+function updateAlbumItem(req,res){
+    var updateAlbum = db.params.id;
+    var update ={
+      name: req.body.name,
+      imageUrl: req.body.imageUrl,
+      tags: []
+  }
+  });
+
 module.exports = {
   displayAlbumItems: displayAlbumItems,
   createAlbumItem: createAlbumItem,
-  displayAlbumItem: displayAlbumItem
+  displayAlbumItem: displayAlbumItem,
+  updateAlbumItem: updateAlbumItem
 }

@@ -7,14 +7,22 @@ const BandSchema = new mongoose.Schema({
     unique: true,
     required: true
   },
-  established: Number,
-  hometown: String,
+  established: {
+    type: Number,
+    default: ""},
+  hometown: {
+    type: String,
+    default: ""
+  },
   label: String,
-  // {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'Label'
-  // },
-  genre: String
+    // {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Label'
+    // },
+  genre: {
+    type: String,
+    default: ""
+  }
 });
 
 const Band = mongoose.model('Band', BandSchema);

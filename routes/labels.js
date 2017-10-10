@@ -5,7 +5,7 @@ const db = require('../models');
 function getAllLabels(req, res){
   db.Label.find({}, function(err, data){
     if(err){
-      console.log("There was an error: ", err);
+      giveErrorMessage(err);
     }else{
       res.json(data)
     }
@@ -35,9 +35,56 @@ function labelById(req, res){
   const labelId = req.params.label_id;
   db.Label.findById(labelId, function(err, data){
     if(err){
-      res.status(500).send('Internal server error. There might be no label by that ID.')
+      console.log('Error saving band to DB.', err);
+      res.status(500).send('Internal server error.');
     }else{
       res.json(data);
+    }
+  })
+};
+
+function updateLabelById(req, res){
+  const labelId = req.params.label_id;
+  db.Label.findById(labelId, function(err, data){
+    if(err){
+      console.log('Error saving band to DB.', err);
+      res.status(500).send('Internal server error.');
+    }else{
+      data.name = req.body.name || data.name;
+      data.location = req.body.location || data.location;
+      data.established = req.body.established || data.established;
+      data.bands = req.body.bands || data.bands;
+      data.genre = req.body.genre || data.genre;
+    }
+    data.save(function(err,data){
+      if(err){
+        console.log('Error saving band to DB.', err);
+        res.status(500).send('Internal server error.');
+      }else{
+        res.status(201).json(data);
+      }
+    })
+  })
+};
+
+
+function deleteLabelById(req, res){
+  const labelId = req.params.label_id;
+  var labelName;
+  db.Label.findById(labelId, function(err, data){
+    if(err){
+      console.log('Error saving band to DB.', err);
+      res.status(500).send('Internal server error.');
+    }else{
+      labelName = data.name;
+    }
+  })
+  db.Label.findByIdAndRemove(labelId, function (err, data){
+    if(err){
+      console.log('Error saving band to DB.', err);
+      res.status(500).send('Internal server error.');
+    }else{
+      res.status(201).send("The record for \'" + labelName + "\' was deleted.")
     }
   })
 };
@@ -45,5 +92,7 @@ function labelById(req, res){
  module.exports = {
    getAllLabels: getAllLabels,
    createNewLabel: createNewLabel,
-   labelById: labelById
+   labelById: labelById,
+   updateLabelById: updateLabelById,
+   deleteLabelById: deleteLabelById
  };

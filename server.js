@@ -26,7 +26,9 @@ app.post('/bands', bandRoutes.createNewBand);
 //find one by ID
 app.get('/bands/:band_id', bandRoutes.bandById);
 //update existing
-// app.put('/bands/:band_id', bandRoutes.updateBandById);
+app.put('/bands/:band_id', bandRoutes.updateBandById);
+//delete record
+app.delete('/bands/:band_id', bandRoutes.deleteBandById);
 
 const labelRoutes = require('./routes/labels');
 //get all
@@ -36,7 +38,9 @@ app.post('/labels', labelRoutes.createNewLabel);
 //find one by ID
 app.get('/labels/:label_id', labelRoutes.labelById);
 //update existing
-// app.put('/labels/:label_id', labelRoutes.updateLabelById);
+app.put('/labels/:label_id', labelRoutes.updateLabelById);
+//delete record
+app.delete('/labels/:label_id', labelRoutes.deleteLabelById);
 
 // or you can import route handlers from other files like this:
 const testRoutes = require('./routes/test');

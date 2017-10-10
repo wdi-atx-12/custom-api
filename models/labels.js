@@ -7,14 +7,23 @@ const LabelSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  location: String,
-  established: Number,
+  location: {
+    type: String,
+    default: ""
+  },
+  established: {
+    type: Number,
+    default: ""
+  },
   bands: String,
-  // {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'Band'
-  // },
-  genre: String
+    // [{
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Band'
+    // }],
+  genre: {
+    type: String,
+    default: ""
+  }
 });
 
 const Label = mongoose.model('Label', LabelSchema);

@@ -18,13 +18,6 @@ app.get('/', function(req, res) {
   });
 });
 
-app.get('/vehicles', function(req, res) {
-  res.json({
-    message: 'Hello, world!!!!!!',
-    type: 'greeting',
-    time: new Date()
-  });
-});
 
 app.get('/vehicles', function(req, res){
   db.Vehicles.find({}, function(err, data){

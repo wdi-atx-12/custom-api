@@ -28,7 +28,6 @@ function createNewBand(req, res){
     labelOn.bands.push(newBandItem._id);
     labelOn.populate('bands');
     labelOn.save();
-    
   });
   newBandItem.save(function (err, data){
     if(err){
@@ -59,6 +58,18 @@ function updateBandById(req, res){
       console.log('Error saving band to DB.', err);
       res.status(500).send('Internal server error.');
     }else{
+      if(data.label != req.body.label){
+        db.Label.findOne({_id: data.label}, function(err,labelOff){
+          if(!err){
+            labelOff.bands.splice(bandId, 1);
+          }
+        });
+        db.Label.findOne({_id: req.body.label}, function(err, labelOn){
+          labelOn.bands.push(req.params.band_id);
+          labelOn.populate('bands');
+          labelOn.save();
+        });
+      }
       data.name = req.body.name ||data.name;
       data.established = req.body.established ||data.established;
       data.hometown = req.body.hometown ||data.hometown;

@@ -7,21 +7,21 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
-// app routes
-// you can add route handlers directly in this file like this:
-app.get('/', function(req, res) {
-  res.json({
-    message: 'Hello, world!',
-    type: 'greeting',
-    time: new Date()
-  });
-});
-// or you can import route handlers from other files like this:
-const testRoutes = require('./routes/test');
-app.get('/test', testRoutes.getTestItems);
-app.post('/test', testRoutes.createTestItem);
+//band routes
+const bandRoutes = require('./routes/band');
+app.get('/band', bandRoutes.displayBandItems);
+app.get('/band/:id', bandRoutes.displayBandItem);
+app.post('/band', bandRoutes.createBandItem);
+// app.put('/band/:id', bandRoutes.updateBandItem)
 
-// TODO: delete the above dummy routes and add your actual routes
+//album routes
+const albumRoutes = require('./routes/albums');
+app.get('/album', albumRoutes.displayAlbumItems);
+app.get('/album/:id', albumRoutes.displayAlbumItem);
+app.post('/album', albumRoutes.createAlbumItem);
+// app.put('/album/:id',albumRoutes.updateAlbumItem)
+
+
 
 // start app
 app.listen(port, function(err) {
@@ -31,3 +31,37 @@ app.listen(port, function(err) {
     console.log(`Server running on port ${port}.`);
   }
 });
+
+// app routes
+// you can add route handlers directly in this file like this:
+// app.get('/', function(req, res) {
+//   res.json({
+//     message: 'Hello, world!',
+//     type: 'greeting',
+//     time: new Date()
+//   });
+// });
+//
+// app.get('/band', function(err, res){
+//
+//     if(err){
+//       res.status(500).send('error retrieving data.');
+//     } else{
+//       res.json(getBands.displayBand);
+//     }
+//
+// });
+//
+//
+// // or you can import route handlers from other files like this:
+// const getBands = require('./routes/band');
+//
+//
+//
+//
+// // app.get('/band', getBands.displayBand);
+//
+// app.post('/band', getBands.createBand);
+
+
+//TOdo: delete the above dummy routes and add your actual routes

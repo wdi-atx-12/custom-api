@@ -16,7 +16,7 @@ app.get('/newOrder', orderRoutes.getOrders);
 app.post('/newOrder', orderRoutes.createOrder);
 app.get('/newOrder/:id', orderRoutes.findByIdOrders);
 app.put('/orderChange/:id', orderRoutes.changeOrder);
-app.delete('/deleteOrder/:id', orderRoutes.deleteOrder);
+app.delete('/newOrder/deleteOrder/:id', orderRoutes.deleteOrder);
 
 
 //entree stuff

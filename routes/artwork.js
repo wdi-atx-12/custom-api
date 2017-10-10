@@ -12,7 +12,6 @@ function getArtworkItems(req, res) {
   });
 }
 
-
 function getArtworkItem(req, res) {
   db.Artwork.findOne({_id: req.params.id}, function(err,data) {
     if (err) {
@@ -23,6 +22,20 @@ function getArtworkItem(req, res) {
     }
   });
 }
+
+function updateArtworkItem(req, res) {
+  db.Artwork.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    res.json(post);
+  });
+};
+
+function deleteArtworkItem(req, res) {
+  db.Artwork.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+    res.json(post);
+  });
+
+}
+
 
 function createArtworkItem(req, res) {
   const newArtworkItem = db.Artwork({
@@ -47,5 +60,7 @@ function createArtworkItem(req, res) {
 module.exports = {
   getArtworkItems: getArtworkItems,
   getArtworkItem: getArtworkItem,
+  updateArtworkItem: updateArtworkItem,
+  deleteArtworkItem: deleteArtworkItem,
   createArtworkItem: createArtworkItem
 };

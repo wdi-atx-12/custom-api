@@ -8,7 +8,9 @@ const ArtistSchema = new mongoose.Schema({
     portraitImg: String,
     hometown: String,
     bio: String
-    //artworks: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Artwork' }]
+    // Artwork: [{
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   ref: 'Artwork' }]
 });
 
 const Artist = mongoose.model('Artist', ArtistSchema); // lets make a model a thing

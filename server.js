@@ -24,12 +24,17 @@ const artistRoutes = require('./routes/artist');
 app.get('/artist', artistRoutes.getArtistItems);
 app.get('/artist/:id', artistRoutes.getArtistItem);
 app.post('/artist', artistRoutes.createArtistItem);
+app.put('/artist/:id', artistRoutes.updateArtistItem);
+app.delete('/artist/:id', artistRoutes.deleteArtistItem);
+
 
 //Artwork controllers
 const artworkRoutes = require('./routes/artwork');
 app.get('/artwork', artworkRoutes.getArtworkItems);
 app.get('/artwork/:id', artworkRoutes.getArtworkItem);
 app.post('/artwork', artworkRoutes.createArtworkItem);
+app.put('/artwork/:id', artworkRoutes.updateArtworkItem);
+app.delete('/artwork/:id', artworkRoutes.deleteArtworkItem);
 
 // TODO: delete the above dummy routes and add your actual routes
 

@@ -5,6 +5,7 @@ const db = require('../models');
 all go here */
 function getArtistItems(req, res) {
   db.Artist.find({}, function(err,data) {
+
     if (err) {
       console.log('Error retrieving Artist items from DB.', err);
       res.status(500).send('Internal server error');
@@ -13,7 +14,6 @@ function getArtistItems(req, res) {
     }
   });
 }
-
 
 function getArtistItem(req, res) {
   db.Artist.findOne({_id: req.params.id}, function(err,data) {
@@ -26,6 +26,18 @@ function getArtistItem(req, res) {
   });
 };
 
+function updateArtistItem(req, res) {
+  db.Artist.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+    res.json(post);
+  });
+};
+
+function deleteArtistItem(req, res) {
+  db.Artist.findByIdAndRemove(req.params.id, req.body, function (err, post) {
+    res.json(post);
+  });
+
+}
 
 function createArtistItem(req, res) {
   const newArtistItem = db.Artist({
@@ -53,7 +65,8 @@ function createArtistItem(req, res) {
 module.exports = {
   getArtistItems: getArtistItems,
   getArtistItem: getArtistItem,
+  updateArtistItem: updateArtistItem,
+  deleteArtistItem: deleteArtistItem,
   createArtistItem: createArtistItem
 }
-
 

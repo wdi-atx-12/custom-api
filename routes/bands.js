@@ -18,7 +18,6 @@ function addBand(req, res) {
   const newBand = db.Band({
     name: req.body.name,
     genre: req.body.genre,
-    upcomingShows: req.body.upcomingShows,
     website: req.body.website
   });
   newBand.save((err, addedBand) => {
@@ -31,7 +30,6 @@ function updateBand(res, req) {
   var update = {
     name: req.body.name,
     genre: req.body.genre,
-    upcomingShows: req.body.upcomingShows,
     website: req.body.website
   };
   db.Band.findOneAndUpdate({_id: bandId}, update, (err, updatedBand) => {

@@ -18,7 +18,6 @@ function addVenue(req, res) {
   const newVenue = db.Venue({
     name: req.body.name,
     location: req.body.location,
-    showSchedule: req.body.showSchedule,
     website: req.body.website,
     twentyOneAndUp: req.body.twentyOneAndUp
   });
@@ -32,7 +31,6 @@ function updateVenue(req, res) {
   var update = {
     name: req.body.name,
     location: req.body.location,
-    showSchedule: req.body.showSchedule,
     website: req.body.website,
     twentyOneAndUp: req.body.twentyOneAndUp
   }

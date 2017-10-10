@@ -2,15 +2,21 @@ const db = require('../models');
 const helper = require('./route-helper');
 
 function getAllShows(req, res) {
-  db.Show.find({}, (err, foundShows) => {
-    helper.dataHandler(res, err, 'Error retrieving data.', foundShows);
-  });
+  db.Show.find()
+    .populate('venue')
+    .populate('bands')
+    .exec((err, foundShows) => {
+      helper.dataHandler(res, err, 'Error retrieving data.', foundShows);
+    });
 }
 
 function getShow(req, res) {
   var showId = req.params.id;
-  db.Show.find({_id: showId}, (err, foundShow) => {
-    helper.dataHandler(res, err, 'Error retrieving data.', foundShow);
+  db.Show.find({_id: showId})
+    .populate('venue')
+    .populate('bands')
+    .exec((err, foundShow) => {
+      helper.dataHandler(res, err, 'Error retrieving data.', foundShow);
   });
 }
 

@@ -2,10 +2,8 @@ const mongoose = require('mongoose');
 
 const ShowSchema = new mongoose.Schema({
   bands: [{
-    band: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Band'
-    }
   }],
   date: {
     type: Date,

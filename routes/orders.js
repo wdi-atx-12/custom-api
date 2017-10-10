@@ -39,9 +39,26 @@ function findByIdOrders(req, res) {
   });
 };
 
+function changeOrder(req, res) {
+  db.Order.update({ _id: req.params.id }, {$set: changeOrder}, (err, findItem) => {
+    res.json(findItem);
+  });
+};
+
+function deleteOrder(req, res) {
+  console.log('entree delete', req.params.id);
+  db.Order.findOneAndRemove({ _id: req.params.id })
+    .exec(function (err, deletedOrder) {
+      res.json(deletedOrder);
+    });
+  };
+
+
 // functions are exported here so they can be referenced in server.js to respond to incoming requests
 module.exports = {
   getOrders: getOrders,
   createOrder: createOrder,
   findByIdOrders: findByIdOrders,
+  changeOrder: changeOrder,
+  deleteOrder: deleteOrder
 };

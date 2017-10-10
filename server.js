@@ -19,6 +19,7 @@ app.get('/', function(req, res) {
 // or you can import route handlers from other files like this:
 const guitaristRoutes = require('./routes/guitarists');
 app.get('/guitarists', guitaristRoutes.getGuitarist);
+app.get('/:id', guitaristRoutes.getGuitaristById);
 app.post('/guitarists', guitaristRoutes.createGuitarist);
 app.put('/guitarists/:id', guitaristRoutes.updateGuitarist);
 app.delete('/guitarists/:id', guitaristRoutes.deleteGuitarist);

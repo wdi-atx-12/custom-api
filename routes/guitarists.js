@@ -16,6 +16,19 @@ function getGuitarist(req, res) {
 }
 
 
+function getGuitaristById(req, res) {
+  var guitaristId = req.params.id;
+  db.Guitarist.findById({_id: guitaristId}, function(err, data) {
+    if (err) {
+      console.log('Error retrieving guitarists from DB.', err);
+      res.status(500).send('Internal server error');
+    } else {
+      res.json(data);
+    }
+  });
+}
+
+
 
 function createGuitarist(req, res) {
   const newGuitarist = db.Guitarist({
@@ -85,6 +98,7 @@ function deleteGuitarist(req, res) {
 // functions are exported here so they can be referenced in server.js to respond to incoming requests
 module.exports = {
   getGuitarist: getGuitarist,
+  getGuitaristById: getGuitaristById,
   createGuitarist: createGuitarist,
   updateGuitarist: updateGuitarist,
   deleteGuitarist: deleteGuitarist

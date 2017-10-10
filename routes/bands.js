@@ -23,13 +23,18 @@ function createNewBand(req, res){
     label: req.body.label,
     genre: req.body.genre
   })
-
+  db.Label.findOne({_id: req.body.label}, function(err, labelOn){
+    console.log(newBandItem._id);
+    labelOn.bands.push(newBandItem._id);
+    labelOn.populate('bands');
+    labelOn.save();
+    
+  });
   newBandItem.save(function (err, data){
     if(err){
       console.log('Error saving band to DB.', err);
       res.status(500).send('Internal server error.');
     }else{
-      db.Label.find({_id:req.body.label}).populate('bands');
       res.status(201).json(data);
     }
   });

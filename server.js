@@ -8,26 +8,33 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // app routes
-// you can add route handlers directly in this file like this:
 app.get('/', function(req,res){
   res.send('hello world');
 });
 
 const recipeRoutes = require('./routes/recipes');
 //get all recipes
-app.get('/recipe', recipeRoutes.getRecipes);
-//post/create new recipe
-app.post('/recipe', recipeRoutes.createRecipe);
+app.get('/recipeBook/recipe', recipeRoutes.getRecipes);
 //get one recipe by ID
-app.get('/recipe/:id', recipeRoutes.getOneRecipe);
+app.get('/recipeBook/recipe/:id', recipeRoutes.getOneRecipe);
+//post/create new recipe
+app.post('/recipeBook/recipe', recipeRoutes.createRecipe);
 //update recipe
-app.put('/recipe/:id', recipeRoutes.updateRecipe);
+app.put('/recipeBook/recipe/:id', recipeRoutes.updateRecipe);
 //delete recipe
-app.delete('/recipe/:id', recipeRoutes.deleteRecipe);
+app.delete('/recipeBook/recipe/:id', recipeRoutes.deleteRecipe);
 
-const recipeBookRoutes = require('./routes.recipeBooks');
-//get all recipe books
-app.get('/recipe', recipeBookRoutes.getRecipeBook);
+const recipeBookRoutes = require('./routes/recipeBooks');
+// //get all recipe books
+app.get('/recipeBook', recipeBookRoutes.getRecipeBook);
+// get one recipe book
+app.get('/recipeBook/:id', recipeBookRoutes.getOneRecipeBook);
+//create new recipe book
+app.post('/recipeBook', recipeBookRoutes.createNewRecipeBook);
+//update recipe book
+app.put('/recipeBook/:id', recipeBookRoutes.updateRecipeBook);
+//delete recipe book
+app.delete('/recipeBook/:id', recipeBookRoutes.deleteRecipeBook);
 //TODO: make all other routes for recipe book
 //TODO: put stuff on heroku
 

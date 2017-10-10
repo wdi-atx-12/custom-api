@@ -1,15 +1,37 @@
+
 const db = require('../models');
 
+//get all recipes
 function getRecipes(req, res){
-  db.Recipe.find({}, function(err, data){
+  db.Recipe.find()
+  .populate('RecipeBook')
+  .exec(function (err, recipe){
     if(err){
-    res.status(500).send('Error retrieving data.');
-    }else{
-    res.json(data);
+      return console.log("Index error: "+ err);
     }
-  });
-}
+    console.log("got all recipes!");
+     res.json(recipe);
+  })
+};
 
+//   , function(err, data){
+//     if(err){
+//     res.status(500).send('Error retrieving data.');
+//     }else{
+//     res.json(data);
+//     }
+//   });
+// }
+
+//get one recipe
+function getOneRecipe(req, res){
+  var recipeId = req.params.id;
+  db.Recipe.findOne({_id: recipeId}, function(err, foundRecipe){
+    res.json(foundRecipe);
+  })
+};
+
+//create new recipe
 function createRecipe(req, res){
   var newRecipe = new db.Recipe({
     name: req.body.name,
@@ -19,22 +41,28 @@ function createRecipe(req, res){
     instructions: req.body.instructions,
     tags: req.body.tags
   });
-  newRecipe.save(function(err,newRecipe){
-    if(err){
-      return console.log("create error: "+ err);
-    }
-    console.log("created ", newRecipe.name);
-    res.json(newRecipe);
+  db.RecipeBook.findOne({recipes: req.body.recipeBook}, function(err, recipeBook){
+    newRecipe.recipeBook = recipeBook;
+    newRecipe.save(function(err,newRecipe){
+      if(err){
+        return console.log("create error: "+ err);
+      }
+      console.log("created: ", newRecipe.name);
+      res.json(newRecipe)
+    });
   });
 };
+//   newRecipe.save(function(err,newRecipe){
+//     if(err){
+//       return console.log("create error: "+ err);
+//     }
+//     console.log("created ", newRecipe.name);
+//     res.json(newRecipe);
+//   });
+// };
 
-function getOneRecipe(req, res){
-  var recipeId = req.params.id;
-  db.Recipe.findOne({_id: recipeId}, function(err, foundRecipe){
-    res.json(foundRecipe);
-  })
-};
 
+//update recipe
 function updateRecipe(req,res){
   var recipeId = req.params.id;
   var newRecipe = {
@@ -50,6 +78,7 @@ function updateRecipe(req,res){
   });
 };
 
+//delete recipe
 function deleteRecipe(req,res){
   var recipeId = req.params.idl
   db.Recipe.findOneAndRemove({_id: recipeId}, function(err, removedRecipe){

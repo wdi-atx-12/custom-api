@@ -20,6 +20,9 @@ app.get('/', function(req, res) {
 const eraRoutes = require('./routes/era');
 app.get('/era', eraRoutes.getAllEras);
 app.post('/era', eraRoutes.createEra);
+app.put('/era/id:', eraRoutes.updateEra);
+
+
 
 const composerRoutes = require('./routes/composers');
 app.get('/composers', composerRoutes.getComposers);

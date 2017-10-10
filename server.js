@@ -31,7 +31,7 @@ app.use(bodyParser.json());
     })
   });
 
-app.post('/pokemon', function (req, res) {
+  app.post('/pokemon', function (req, res) {
   var japaneseName = new db.Pokemon({
     pokemonData: {
       name: req.body.name,
@@ -49,7 +49,7 @@ app.post('/pokemon', function (req, res) {
   });
 });
 
-app.put('/pokemon/:id', function(req, res) {
+  app.put('/pokemon/:id', function(req, res) {
   var pokemonId = req.params.id;
   var updatePokemon = {
     pokemonData: {
@@ -73,7 +73,7 @@ app.put('/pokemon/:id', function(req, res) {
   });
 });
 
-app.delete('/pokemon/:id', function(req, res) {
+  app.delete('/pokemon/:id', function(req, res) {
   var pokemonId = req.params.id;
   db.Pokemon.findOneAndRemove({_id: pokemonId}, function(err, deletePokemon) {
     res.json(deletePokemon);
@@ -82,7 +82,7 @@ app.delete('/pokemon/:id', function(req, res) {
 });
 
 // CRUD TRAINER DATA
-app.get('/trainer', function(req, res) {
+  app.get('/trainer', function(req, res) {
   db.Trainer.find({}, function(err, data) {
     if (err) {
       res.status(500).send('Error getting data.');
@@ -92,7 +92,7 @@ app.get('/trainer', function(req, res) {
   });
 });
 
-app.get('/trainer/:id', function(req, res) {
+  app.get('/trainer/:id', function(req, res) {
   var trainerId = req.params.id;
   db.Trainer.findOne({_id: trainerId}, function(err, foundTrainer) {
     if (err) {
@@ -103,7 +103,7 @@ app.get('/trainer/:id', function(req, res) {
   })
 });
 
-app.post('/trainer', function (req, res) {
+  app.post('/trainer', function (req, res) {
   var newName = new db.Trainer({
     name: req.body.name,
     location: req.body.location,
@@ -116,7 +116,7 @@ app.post('/trainer', function (req, res) {
   });
 });
 
-app.put('/trainer/:id', function(req, res) {
+  app.put('/trainer/:id', function(req, res) {
   var trainerId = req.params.id;
   var updateTrainer = {
       name: req.body.name,
@@ -134,8 +134,16 @@ app.put('/trainer/:id', function(req, res) {
   });
 });
 
+  app.delete('/trainer/:id', function(req, res) {
+  var trainerId = req.params.id;
+  db.Trainer.findOneAndRemove({_id: trainerId}, function(err, deleteTrainer) {
+    res.json(deleteTrainer);
+  });
+  console.log('Trainer Deleted', req.params);
+});
+
 // start app
-app.listen(port, function(err) {
+  app.listen(port, function(err) {
   if (err) {
     console.log(`Error starting server on port ${port}`, err);
   } else {

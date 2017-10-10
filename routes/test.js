@@ -47,12 +47,12 @@ function createFighterEntree(req, res){
   });
 };
 
-//UPDATE EXISTING FIGHTER
+// UPDATE EXISTING FIGHTER
 function updateFighterInfo(req, res){
   db.Fighter.findOneAndUpdate({
     _id: req.params.id
   },
-  {$set:{firstName: req.body.firstName}},
+  {$set: req.body},
     {upsert: true},
     function(err, newFighter){
       if(err){
@@ -65,7 +65,7 @@ function updateFighterInfo(req, res){
 
 //DELETE FIGHTER
 function removeFighter(req, res){
-  db.Fighter.findOneAndRemove({
+  db.Fighter.findByIdAndRemove({
     _id: req.params.id
   }, function(err, fighter){
     if(err){
@@ -84,4 +84,5 @@ module.exports = {
   getOneFighter: getOneFighter,
   createFighterEntree: createFighterEntree,
   updateFighterInfo: updateFighterInfo,
+  removeFighter: removeFighter
 };

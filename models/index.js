@@ -6,15 +6,19 @@ const sandwich = require('./sandwich');
 const topping = require('./topping');
 const beverage = require('./beverage');
 const dessert = require('./dessert');
-
+//mongoose.set('debug', true);
 
 // connect to Mongo DB
-mongoose.connection.openUri(process.env.MONGODB_URI || process.env.DB_CONN, {}, function(err, conn) {
+mongoose.connection.openUri(process.env.MONGODB_URI ||process.env.DB_CONN, {}, function(err, conn) {
 	if (err) {
 		console.log('Error connecting to Mongo DB.', err);
 	} else {
 		console.log('Mongoose successfully connected to Mongo DB.');
 	}
+});
+
+mongoose.connection.on('error', (err) => {
+	console.log(`MongoDB error: ${err}`);
 });
 
 module.exports = {

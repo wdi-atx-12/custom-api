@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 const beverageRoutes = require('./routes/beverages');
 const toppingRoutes = require('./routes/toppings');
 const dessertRoutes = require('./routes/desserts');
-//const sandwichRoutes = require('./routes/sandwiches');
+const sandwichRoutes = require('./routes/sandwichs');
 //const sandwichMenuRoutes = require('./routes/sandwichMenu');
 
 
@@ -43,7 +43,7 @@ app.get('/', function (req, res) {
 });
 
 var routeRoot = "/api";
-var bases = ["beverage","topping","dessert"];
+var bases = ["beverage","topping","dessert","sandwich"];
 var endpoints = {
 	"selectAllItems": {base: "", action: 'get', 	route: "", 		params: []},
 	"selectItem"	: {base: "", action: 'get', 	route: "/:<>", 	params: ["id"]},
@@ -52,12 +52,12 @@ var endpoints = {
 	"deleteItem"	: {base: "", action: 'delete',	route: "/:<>", 	params: ["id"]}
 };
 
-var createRouteString = function(key, actions) {
-	var rt = `${actions[key].route}`.split("<>");
-	var str = `${routeRoot}/${actions[key].base}s`;
-	if(rt.length === actions[key].params.length+1) {
+var createRouteString = function(endpoint) {
+	var rt = `${endpoint.route}`.split("<>");
+	var str = `${routeRoot}/${endpoint.base}s`;
+	if(rt.length === endpoint.params.length+1) {
 		for(var i = 0; i < rt.length - 1; i++) {
-			str += rt[i]+actions[key].params[i];
+			str += rt[i]+endpoint.params[i];
 		}
 	}
 	return str;
@@ -65,15 +65,16 @@ var createRouteString = function(key, actions) {
 
 for (var i =0; i < bases.length; i++) {
 	for(var key in endpoints) {
-		endpoints[key].base = bases[i];
 		var endpoint = endpoints[key];
-		var routeStr = createRouteString(key,endpoints);
-		var e= eval(`app.${endpoint.action}('${routeStr}',${endpoint.base}Routes.${key});`);
+		endpoint.base = bases[i];
+		var routeStr = createRouteString(endpoint);
+		eval(`app.${endpoint.action}('${routeStr}',${endpoint.base}Routes.${key});`);
 
-		console.log(routeStr);
-		console.log(`Calling endpoint: ${key}(): ${endpoint}`);
-	} // end of for apiFoods[key]
-}
+		console.log(`Checking endpoint: ${routeStr} => ${key}()`);
+
+	} // end of for endpoint[key]
+
+}// end of for(i)
 
 
 // start app

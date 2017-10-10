@@ -11,11 +11,11 @@ var eraSchema = new mongoose.Schema(
     default: ''
   },
   noteableComposers: {
-    type: String,
+    type: Array,
     default: ''
   },
   stylisticElements: {
-    type: String,
+    type: Array,
     default: ''
   }
 });

@@ -1,25 +1,27 @@
 const mongoose = require('mongoose');
-console.log('vehicels model run')
+console.log('vehicels model run');
+Schema = mongoose.Schema
 
 const ManufacturerInfoSchema = new mongoose.Schema({
   company: {
     type: String,
-    // unique: true,
-    // required: true
   },
   country: String,
+  vehicles: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Vehicles'
+  }]
 });
 
 const VehicleTypeSchema = new mongoose.Schema({
+
   model: {
     type: String,
-    // unique: true,
-    // required: true
+    required: true
   },
   year: {
     type: String,
-    // unique: true,
-    // required: true
+    required: true
   },
   engineInfo: [{
     engineType: String,
@@ -30,7 +32,7 @@ const VehicleTypeSchema = new mongoose.Schema({
   }],
   numberOfDoors: Number,
   colorOptions: Array,
-  manufacturerInfo: ManufacturerInfoSchema,
+
 });
 
 

@@ -13,7 +13,7 @@ mongoose.connection.openUri(process.env.MONGODB_URI || process.env.DB_CONN, {}, 
   }
 });
 
-    mongoose.connect( process.env.MONGODB_URI || "YOUR CURRENT LOCALHOST DB CONNECTION STRING HERE" );
+
 
 module.exports = {
   // TODO: add references to all models here

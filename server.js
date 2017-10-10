@@ -20,7 +20,7 @@ app.get('/', function(req, res) {
 
 app.get('/vehicles', function(req, res) {
   res.json({
-    message: 'Hello, world!',
+    message: 'Hello, world!!!!!!',
     type: 'greeting',
     time: new Date()
   });

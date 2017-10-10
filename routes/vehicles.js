@@ -15,7 +15,7 @@ function getVehicleItems(req, res) {
 }
 
 function createVehicleItem(req, res) {
-  const newVehicleItem = db.Vehicles({
+  const newVehicleItem = new db.Vehicles({
     model: req.body.model,
     year: req.body.year,
     engineInfo: req.body.engineInfo,
@@ -24,11 +24,11 @@ function createVehicleItem(req, res) {
 
   });
 
-
+  // newVehicleItem.isNew = true
 
   newVehicleItem.save(function(err, data) {
     if (err) {
-      console.log('Error saving vehicle item to DB.', err);
+      console.log('Error saving vehicle item to DB 31.', err);
       res.status(500).send('Internal server error!!');
     } else {
       res.status(201).json(data);

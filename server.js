@@ -7,20 +7,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
-// app routes
-// you can add route handlers directly in this file like this:
-app.get('/', function(req, res) {
-  res.json({
-    message: 'Hello, world',
-    type: 'greeting',
-    time: new Date()
-  });
-});
+
 // or you can import route handlers from other files like this:
 const eraRoutes = require('./routes/era');
-app.get('/era', eraRoutes.getAllEras);
+app.get('/era', eraRoutes.getEra);
 app.post('/era', eraRoutes.createEra);
-app.put('/era/id:', eraRoutes.updateEra);
+app.put('/era/:id', eraRoutes.updateEra);
 
 
 

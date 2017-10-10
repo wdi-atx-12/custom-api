@@ -85,7 +85,7 @@ db.Era.remove({_id: eraId}, function(err, data) {
 
 // functions are exported here so they can be referenced in server.js to respond to incoming requests
 module.exports = {
-  getAllEras: getEra,
+  getEra: getEra,
   createEra: createEra,
   updateEra: updateEra,
   deleteEra: deleteEra,

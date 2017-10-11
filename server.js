@@ -1,6 +1,7 @@
 // dependencies
 const express = require('express');
 const bodyParser = require('body-parser');
+const db = require('./models');
 
 // app config
 const app = express();
@@ -8,7 +9,6 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // app routes
-// you can add route handlers directly in this file like this:
 app.get('/', function(req, res) {
   res.json({
     message: 'Hello, world!',
@@ -16,12 +16,30 @@ app.get('/', function(req, res) {
     time: new Date()
   });
 });
-// or you can import route handlers from other files like this:
-const testRoutes = require('./routes/test');
-app.get('/test', testRoutes.getTestItems);
-app.post('/test', testRoutes.createTestItem);
 
-// TODO: delete the above dummy routes and add your actual routes
+const routes = require('./routes/routes');
+
+// user routes
+app.get('/users', routes.getUsers);
+app.get('/users/:id', routes.getUserById);
+app.post('/users', routes.createUser);
+// app.put('/users/:id', routes.updateUserById);
+app.delete('/users/:id', routes.deleteUserById);
+
+// song routes
+app.get('/songs', routes.getSongs);
+app.post('/songs', routes.createSong);
+// app.put('/songs/:id', routes.updateSongById);
+// app.delete('/songs/:id', routes.deleteSongById);
+
+// playlist routes
+app.get('/playlists', routes.getPlaylists)
+// create new playlist
+// update
+
+
+
+
 
 // start app
 app.listen(port, function(err) {

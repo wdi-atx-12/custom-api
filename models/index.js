@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
-// TODO: include all model files here (and export models together below)
+
+// require use of individual files from models folder
+// include all model files
+const user = require('./user');
+const playlist = require('./playlist');
+const song = require('./song');
+
 const testModels = require('./test');
 
 // connect to Mongo DB
@@ -13,6 +19,9 @@ mongoose.connection.openUri(process.env.MONGODB_URI || process.env.DB_CONN, {}, 
 });
 
 module.exports = {
-  // TODO: add references to all models here
+  // add references to all models
+  User: user.User,
+  Playlist: playlist.Playlist,
+  Song: song.Song,
   Test: testModels.Test
 };

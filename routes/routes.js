@@ -35,10 +35,28 @@ function getUserById(req, res){
   });
 }
 
-// app.get('/users/:id', routeyRoutes.getUserById);
+function createUser(req, res) {
+  var username = req.body.username;
+  var displayName = req.body.displayName;
+  var artist = req.body.artist;
+  var playlists = req.body.playlist;
+
+  var newUser = new db.User({
+    username: username,
+    displayName: displayName,
+    artist: artist,
+    playlists: playlists
+  });
+
+  newUser.save(function(err, newUser){
+    res.send('user created')
+  });
+})
+
 
 module.exports = {
   getUsers: getUsers,
   getUserById: getUserById,
-  getSongs: getSongs
+  getSongs: getSongs,
+  createUser: createUser
 };

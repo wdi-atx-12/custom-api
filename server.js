@@ -24,6 +24,7 @@ app.get('/', function(req, res) {
 
 const routes = require('./routes/routes');
 app.get('/users', routes.getUsers);
+app.post('/users', routes.createUser);
 app.get('/users/:id', routes.getUserById);
 app.get('/songs', routes.getSongs);
 
@@ -40,24 +41,6 @@ app.get('/playlists', function(req, res) {
   });
 });
 
-// create new user
-app.post('/users', function(req, res) {
-  var username = req.body.username;
-  var displayName = req.body.displayName;
-  var artist = req.body.artist;
-  var playlists = req.body.playlist;
-
-  var newUser = new db.User({
-    username: username,
-    displayName: displayName,
-    artist: artist,
-    playlists: playlists
-  });
-
-  newUser.save(function(err, newUser){
-    res.send('user created')
-  });
-})
 // create new song
 // create new playlist
 

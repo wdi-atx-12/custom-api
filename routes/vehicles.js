@@ -36,8 +36,30 @@ function createVehicleItem(req, res) {
   });
 }
 
+function getOneVehicle(req, res) {
+  db.Vehicles.findById(req.params.id, function(err, data){
+    if (err) {
+      console.log('Error retrieving test items from DB.', err);
+      res.status(500).send('Internal server error!');
+    } else {
+      res.json(data);
+    }
+  })
+}
+
+function deleteOneVehicle(req, res) {
+  db.Vehicels.findOneAndRemove({id: req.params.id}, function (err, deletedVehicle){
+    res.json(deletedVehicle);
+  });
+}
+
+   // db.User.findOneAndRemove({_id: userID}, function (err, deletedUser){
+   //   res.json(deletedUser);
+
 
 module.exports = {
   getVehicleItems: getVehicleItems,
   createVehicleItem: createVehicleItem,
+  getOneVehicle: getOneVehicle,
+  deleteOneVehicle: deleteOneVehicle
 };

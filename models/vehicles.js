@@ -2,16 +2,16 @@ const mongoose = require('mongoose');
 console.log('vehicels model run');
 Schema = mongoose.Schema
 
-const ManufacturerInfoSchema = new mongoose.Schema({
-  company: {
-    type: String,
-  },
-  country: String,
-  vehicles: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Vehicles'
-  }]
-});
+// const ManufacturerInfoSchema = new mongoose.Schema({
+//   company: {
+//     type: String,
+//   },
+//   country: String,
+//   vehicles: [{
+//     type: Schema.Types.ObjectId,
+//     ref: 'Vehicles'
+//   }]
+// });
 
 const VehicleTypeSchema = new mongoose.Schema({
 
@@ -31,17 +31,16 @@ const VehicleTypeSchema = new mongoose.Schema({
     torque: String,
   }],
   numberOfDoors: Number,
-  colorOptions: Array,
-
+  colorOptions: Array
 });
 
 
 
-const Manufacturer = mongoose.model('Manufacturer', ManufacturerInfoSchema);
+// const Manufacturer = mongoose.model('Manufacturer', ManufacturerInfoSchema);
 const Vehicles = mongoose.model('Vehicles', VehicleTypeSchema);
 
 
 module.exports = {
-  Manufacturer: Manufacturer,
+  // Manufacturer: Manufacturer,
   Vehicles: Vehicles
 };

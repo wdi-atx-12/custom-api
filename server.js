@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 
 // app routes
 app.get('/', function(req,res){
-  res.send('hello world');
+  res.send('Hello! Welcome to Recipe Book world! Please read the documentation to create, read, update, or delete recipes.');
 });
 
 const recipeRoutes = require('./routes/recipes');

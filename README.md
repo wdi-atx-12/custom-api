@@ -37,7 +37,9 @@ References are not created automatically with this version of the API. Therefore
   "hometown": "City, State",
   "bio": "artist bio typed here",
   "Artwork": [""]
-}```
+}
+```
+
 
 ### Delete a specific artist
 * method: DELETE
@@ -66,6 +68,7 @@ References are not created automatically with this version of the API. Therefore
 * method: PUT
 * path: https://damp-mesa-41370.herokuapp.com/artwork/<<_id here>>**
 * description: recalls an existing Artwork record and is able to update any specific value within it's schema. The following example will update the records location:
+
 ```{
   "location": "Barcelona, Spain"
 }```

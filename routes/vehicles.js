@@ -48,13 +48,13 @@ function getOneVehicle(req, res) {
 }
 
 function deleteOneVehicle(req, res) {
-  db.Vehicels.findOneAndRemove({id: req.params.id}, function (err, deletedVehicle){
+  let id = req.params.id;
+  db.Vehicles.findByIdAndRemove(id, function (err, deletedVehicle){
     res.json(deletedVehicle);
   });
 }
 
-   // db.User.findOneAndRemove({_id: userID}, function (err, deletedUser){
-   //   res.json(deletedUser);
+
 
 
 module.exports = {

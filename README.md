@@ -1,4 +1,4 @@
-### Studio Guitarist API
+# Studio Guitarist API
 
 This API seeks to provide a database of studio guitarists for hire.  It provides the guitarist's name and age, as well as a list of guitars that the guitarist can bring to a session or a show.  The schema for the guitars is detailed with info such as make, model, color, etc.
 

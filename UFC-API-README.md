@@ -45,9 +45,11 @@ record: String,
 They key "record" must have a value written like in this example "10-5", 10 being the fights the fighter has won and 5 being the ones he has lost.
 
 ## PUT "fighter/:id"
-Using **PUT** in this endpoint allows users to modify the data of a specific previously created fighter entree by fetching it by its id. This is useful to keep their all the record data up to date. The guidelines on how to update their info are the same as the POST method mentioned above.
+Using **PUT** in this endpoint allows users to modify the data of a specific previously created fighter entree by fetching it by its id. This is useful to keep all of their record data up to date. The guidelines on how to update their info are the same as the POST method mentioned above.
 ```
 https://guarded-mesa-21535.herokuapp.com/fighters/59dcdb5bd7aca80012cf1078
+```
+```
 {
   titleHolder: true
   record: "12-2"

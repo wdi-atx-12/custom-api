@@ -56,7 +56,6 @@ function updateDeveloper(req, res) {
     }
     res.send(foundItem);
   }).catch((err) => {
-
     res.sendStatus(400).send(`Error removing object ${req.params.id}`);
   })
 }

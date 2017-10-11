@@ -1,10 +1,29 @@
 # <img src="https://cloud.githubusercontent.com/assets/7833470/10423298/ea833a68-7079-11e5-84f8-0a925ab96893.png" width="60"> Personal API - Weekend Lab
 
-It's time to have some fun and play with the technologies you've learned in the past week. Your goal is to start your own API.
+## A Collaborative Playlist API (Work in Progress)
 
-Your API can be related to whatever you like, but its Mongo DB must have at least 2 schemas/models that are connected by reference.
+Welcome! This API is based on MongoDB and several NPM packages. It is currently hosted on Heroku and can be accessed [here](https://fierce-bastion-83122.herokuapp.com/).
 
-For example, if your API is for keeping track of various hotels, it would need to reference another type of object besides hotels. You might choose to provide more information about the cities your hotels are found in beyond a simple string like "Austin" or "Orlando". Your `City` schema/model could contain information about the city iself like city name, state, local attractions, and of course a list of related hotels connected by reference.
+### Using this API
+This API has several endpoints:
+
+| Endpoints     | Methods       | What they do  |
+| ------------- |:-------------:| -----:|
+| /users        | GET           | gives all users |
+| /users/:id    | GET           | gives one user by ID |
+| /users        | POST          | create user |
+| /users/:id    | DELETE        | delete user by ID |
+| /songs        | GET           | gives all songs |
+| /songs        | POST          | create song |
+| /playlists    | GET           | gives all playlists |
+
+
+### Getting Started
+To test this API out, you'll need Postman.
+Postman will allow you to use any of the available CRUD methods to use this API.
+Take a look at each endpoint to get familiar with how to interact with the API.
+
+_Note:_ The 'update' and 'delete' methods are still in progress for 'songs' and 'playlists'.
 
 ### Your API should have:
 

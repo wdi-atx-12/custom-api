@@ -16,5 +16,3 @@ Model:
   5 colorOptions
 
   There is a path of /vehicles that lets you use the CRUD method to add to, remove from, and update the database.  You can look up a specific vehicle by using the path for each id as, /vehicle/:id
-
-

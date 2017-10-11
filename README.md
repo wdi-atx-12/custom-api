@@ -31,7 +31,7 @@ To test this API out, you'll need [Postman](https://www.getpostman.com/).
 Postman will allow you to use any of the available CRUD methods to use this API.
 Before using the POST and DELETE methods, take a look at each endpoint to get familiar with how to interact with the API using the example below:
 
-<img src="https://lh3.googleusercontent.com/95GRY8xJLeAaRwIsWAUu2mADKMIDHE2eEqbLXUVeCEhQ_UohzHRIIYwpj4Rx-pFAv4z6HwlndfTjO7s=w1479-h609-rw" width="60">
+<img src="https://lh3.googleusercontent.com/95GRY8xJLeAaRwIsWAUu2mADKMIDHE2eEqbLXUVeCEhQ_UohzHRIIYwpj4Rx-pFAv4z6HwlndfTjO7s=w1479-h609-rw">
 
 
 _Note:_ The 'update' and 'delete' methods are still in progress for 'songs' and 'playlists'.

@@ -56,22 +56,26 @@ References are not created automatically with this version of the API. Therefore
 * method: POST
 * path: https://damp-mesa-41370.herokuapp.com/artwork
 * description: creates a new artwork record, required input as JSON will include the following
-```{
+```
+{
   "artName": "Mona Lisa",
   "imageUrl": "https://upload.wikimedia.org/retouched.jpg",
   "tags": [""],
   "location": "Paris, France",
   "artist": ""
-}```
+}
+```
 
 ### Update A Specific Artwork
 * method: PUT
 * path: https://damp-mesa-41370.herokuapp.com/artwork/<<_id here>>**
 * description: recalls an existing Artwork record and is able to update any specific value within it's schema. The following example will update the records location:
 
-```{
+```
+{
   "location": "Barcelona, Spain"
-}```
+}
+```
 
 ### Delete a specific artwork
 * method: DELETE

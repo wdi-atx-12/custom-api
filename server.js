@@ -1,6 +1,7 @@
 // dependencies
 const express = require('express');
 const bodyParser = require('body-parser');
+const db = require('./models');
 
 // app config
 const app = express();
@@ -16,10 +17,18 @@ app.get('/', function(req, res) {
     time: new Date()
   });
 });
+
+
+
 // or you can import route handlers from other files like this:
-const testRoutes = require('./routes/test');
-app.get('/test', testRoutes.getTestItems);
-app.post('/test', testRoutes.createTestItem);
+
+const vehiclesRoutes = require('./routes/vehicles');
+app.get('/vehicles', vehiclesRoutes.getVehicleItems);
+app.post('/vehicles', vehiclesRoutes.createVehicleItem);
+app.get('/vehicles/:id', vehiclesRoutes.getOneVehicle);
+app.delete('/vehicles/:id', vehiclesRoutes.deleteOneVehicle);
+
+
 
 // TODO: delete the above dummy routes and add your actual routes
 

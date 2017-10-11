@@ -1,6 +1,7 @@
 // this is an example file showing how you might define route handlers
 
 const db = require('../models');
+console.log('test route running')
 
 function getTestItems(req, res) {
   db.Test.find({}, function(err, data) {

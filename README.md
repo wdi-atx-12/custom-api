@@ -1,11 +1,3 @@
-Maps out the API endpoints (method + path combos)
-brief description of each endpoint
-what's the expected response
-any relevant options (i.e.query string options)
-Provides a basic model structure
-includes properties of each model
-requirements for creation
-
 # A Catering API
 ***
 ______________
@@ -50,10 +42,22 @@ Entrees consist of the name (of the entree), the sides (side provided with the e
 ```
 #### To GET order or entrees by ID
 
-Use the following links followed by /:id of the order or entree you wish to find.
+Use the following links replacing :id with the id of the order or entree you wish to find.
 
 - Order: https://sleepy-plains-71427.herokuapp.com/newOrder/:id
 - Entree: https://sleepy-plains-71427.herokuapp.com/newEntrees/:id
+
+#### To PUT (update) an order
+
+Please come back once this section is updated
+
+#### To Delete an existing order
+
+Input the following URL, replacing the :id with the id of the order you with to permanently remove from the API: 
+
+https://sleepy-plains-71427.herokuapp.com/deleteOrder/:id
+
+Warning: This is a permanent deletion and should be used after review of revisions wanted.
 
 
 

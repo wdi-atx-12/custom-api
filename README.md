@@ -35,3 +35,29 @@ Before using the POST and DELETE methods, take a look at each endpoint to get fa
 
 
 _Note:_ The 'update' and 'delete' methods are still in progress for 'songs' and 'playlists'.
+
+### The API's schemas
+
+The user schema has 4 parts to it:
+- username
+- display name
+- artist
+- playlists
+
+The **username** and **display name** are used for authentication/authorization in creating, updating, and deleting songs and playlists. The **artist** key indicates whether that user is an artist/musician or not using boolean values (default is false). The **playlist** keys lists any associated playlists for that user.
+
+The song schema has 4 parts to it:
+- name
+- artist
+- url
+- user
+
+The **name** and **artist** are _required_, for the song's name and the artist that created the song. The **URL** is _optional_, but should link to any site the song is hosted on (Youtube, Spotify, etc.). The **user** is to identify which user added the song.
+
+The playlist schema has 4 parts as well:
+- name
+- songs
+- tags
+- user
+
+The **name** specifies the name of the playlist. An array of the **songs** in that playlist will appear in the songs section. The **tags** are _optional_ but can help clarify what kind of playlist a user is accessing. The **user** that created the playlist is referenced by ID.

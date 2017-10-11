@@ -5,10 +5,11 @@
 Welcome! This API is based on MongoDB and several NPM packages. It is currently hosted on Heroku and can be accessed [here](https://fierce-bastion-83122.herokuapp.com/).
 
 ### Using this API
-This API has several endpoints:
+This API has several endpoints that can be accessed through [here](https://fierce-bastion-83122.herokuapp.com/):
+
 
 | Endpoints     | Methods       | What they do  |
-| ------------- |:-------------:| -----:|
+| ------------- |---------------|-----|
 | /users        | GET           | gives all users |
 | /users/:id    | GET           | gives one user by ID |
 | /users        | POST          | create user |
@@ -16,6 +17,11 @@ This API has several endpoints:
 | /songs        | GET           | gives all songs |
 | /songs        | POST          | create song |
 | /playlists    | GET           | gives all playlists |
+
+For example:
+```
+https://fierce-bastion-83122.herokuapp.com/users
+```
 
 
 ### Getting Started

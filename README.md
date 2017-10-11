@@ -4,9 +4,8 @@ The famous artworks API is a database driven JSON API that maps Famous artworks 
 
 
 ## Heroku Hosted Solution
-You can find the API hosted on heroku at the following url.
-
-https://damp-mesa-41370.herokuapp.com/README.md
+You can find the API hosted on heroku at the following url.  There is no front end layer for the API at this time, so the below End Points will assist in navigating it's database. 
+https://damp-mesa-41370.herokuapp.com/
 
 ## API DATA MODEL
 References are not created automatically with this version of the API. Therefore Reference keys in both Artist and Artwork must be added via a PUT on each model respectively.

@@ -98,10 +98,12 @@ module.exports = {
   createUser: createUser,
   // updateUserById: updateUserById,
   deleteUserById: deleteUserById,
+
   getSongs: getSongs,
   createSong: createSong,
-  // updateUserById: updateUserById,
-  // deleteUserById: deleteUserById,
+  // updateSongById: updateSongById,
+  // deleteSongById: deleteSongById,
+  
   getPlaylists: getPlaylists,
   // createPlaylist: createPlaylist,
   // updatePlaylistById: updatePlaylistById,

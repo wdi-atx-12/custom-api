@@ -9,7 +9,6 @@ const port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 // app routes
-// you can add route handlers directly in this file like this:
 app.get('/', function(req, res) {
   res.json({
     message: 'Hello, world!',
@@ -24,12 +23,14 @@ const routes = require('./routes/routes');
 app.get('/users', routes.getUsers);
 app.get('/users/:id', routes.getUserById);
 app.post('/users', routes.createUser);
-// app.put('/users//:id', routes.updateUserById);
+// app.put('/users/:id', routes.updateUserById);
 app.delete('/users/:id', routes.deleteUserById);
 
 // song routes
 app.get('/songs', routes.getSongs);
 app.post('/songs', routes.createSong);
+// app.put('/songs/:id', routes.updateSongById);
+// app.delete('/songs/:id', routes.deleteSongById);
 
 // playlist routes
 app.get('/playlists', routes.getPlaylists)

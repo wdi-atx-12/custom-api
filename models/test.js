@@ -1,22 +1,26 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const TestSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
+//FIGHTER SCHEMA
+const FighterSchema = new Schema ({
+  firstName: String,
+  lastName: String,
+  league: {
+    type: Schema.ObjectId,
+    ref: "League"
   },
-  count: {
-    type: Number,
-    default: 42
+  titleHolder: Boolean,
+  country: String,
+  team: {
+    type: Schema.ObjectId,
+    ref: "Team"
   },
-  time: {
-    type: Date,
-    default: Date.now
-  }
+  record: String
 });
 
-const Test = mongoose.model('Test', TestSchema);
+//FIGHTER MODEL
+const Fighter = mongoose.model('Fighter', FighterSchema);
 
 module.exports = {
-  Test: Test
+  Fighter: Fighter
 }

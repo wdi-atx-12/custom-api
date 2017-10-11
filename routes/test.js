@@ -76,6 +76,16 @@ function removeFighter(req, res){
   })
 };
 
+//GET ALL TEAMS
+//GET ONE TEAM
+//UPDATE TEAM
+//DELETE TEAM
+
+//GET ALL LEAGUES
+//GET ONE LEAGUE
+//UPDATE LEAGUE
+//DELETE LEAGUE 
+
 
 
 // functions are exported here so they can be referenced in server.js to respond to incoming requests

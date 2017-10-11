@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 // you can add route handlers directly in this file like this:
 app.get('/', function(req, res) {
   res.json({
-    message: 'Hello, world!',
+    message: 'Welcome to my UFC API',
     type: 'greeting',
     time: new Date()
   });

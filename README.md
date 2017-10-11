@@ -6,8 +6,7 @@ Any sandwich shop will have many different types of food stuff for sale. This pa
 
 ## Model/Schema
 The diagram below shows each models' relationships
-
-
+![Sandwich Shop Diagram](models/model.png)
 
 ## Models/Schemas w/out References: Dessert, Beverage, and Topping
 Each of these models are basic and do not contain any references to any other model. They are all share the same basic functionality. For any of the endpoints, you can use https://mighty-shore-62612.herokuapp.com for the time being.

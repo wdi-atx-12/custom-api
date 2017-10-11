@@ -17,42 +17,27 @@ app.get('/', function(req, res) {
     time: new Date()
   });
 });
-// or you can import route handlers from other files like this:
-// const testRoutes = require('./routes/test');
-// app.get('/test', testRoutes.getTestItems);
-// app.post('/test', testRoutes.createTestItem);
 
 const routes = require('./routes/routes');
+
+// user routes
 app.get('/users', routes.getUsers);
-app.post('/users', routes.createUser);
 app.get('/users/:id', routes.getUserById);
+app.post('/users', routes.createUser);
+// app.put('/users//:id', routes.updateUserById);
+app.delete('/users/:id', routes.deleteUserById);
+
+// song routes
 app.get('/songs', routes.getSongs);
 app.post('/songs', routes.createSong);
 
-
-// get all playlists
-app.get('/playlists', function(req, res) {
-  db.Playlist.find({}, function (err, data){
-    if (err) {
-      console.log("error retrieving playlists from db", err);
-      res.status(500).send('Internal server error');
-    } else {
-      res.json(data);
-    }
-  });
-});
-
+// playlist routes
+app.get('/playlists', routes.getPlaylists)
 // create new playlist
-
 // update
 
-// delete user by ID, (TODO: make it work)
-app.delete('/users/:id', function (req, res) {
-  var userID = req.params.id;
-  db.User.findOneAndRemove({_id: userID}, function (err, deletedUser){
-    res.json(deletedUser);
-  });
-});
+
+
 
 
 // start app

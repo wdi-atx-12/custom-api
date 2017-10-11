@@ -11,18 +11,6 @@ function getUsers(req, res) {
   });
 }
 
-//(TODO: but i want all songs in a playlist)
-function getSongs(req, res) {
-  db.Song.find({}, function (err, data){
-    if (err) {
-      console.log("error retrieving songs from db", err);
-      res.status(500).send('Internal server error');
-    } else {
-      res.json(data);
-    }
-  });
-}
-
 function getUserById(req, res){
   var userID = req.params.id;
   db.User.findOne({_id: userID}, function (err, foundUser){
@@ -53,6 +41,27 @@ function createUser(req, res) {
   });
 };
 
+function deleteUserById(req, res) {
+  var userID = req.params.id;
+  db.User.findOneAndRemove({_id: userID}, function (err, deletedUser){
+    res.json(deletedUser);
+  })
+};
+
+//(TODO: but i want all songs in a playlist)
+function getSongs(req, res) {
+  db.Song.find({}, function (err, data){
+    if (err) {
+      console.log("error retrieving songs from db", err);
+      res.status(500).send('Internal server error');
+    } else {
+      res.json(data);
+    }
+  });
+}
+
+
+
 function createSong(req, res) {
   var name = req.body.name;
   var artist = req.body.artist;
@@ -71,11 +80,30 @@ function createSong(req, res) {
   });
 };
 
+function getPlaylists(req, res) {
+  db.Playlist.find({}, function (err, data){
+    if (err) {
+      console.log("error retrieving playlists from db", err);
+      res.status(500).send('Internal server error');
+    } else {
+      res.json(data);
+    }
+  });
+};
+
 
 module.exports = {
   getUsers: getUsers,
-  createUser: createUser,
   getUserById: getUserById,
+  createUser: createUser,
+  // updateUserById: updateUserById,
+  deleteUserById: deleteUserById,
   getSongs: getSongs,
   createSong: createSong,
+  // updateUserById: updateUserById,
+  // deleteUserById: deleteUserById,
+  getPlaylists: getPlaylists,
+  // createPlaylist: createPlaylist,
+  // updatePlaylistById: updatePlaylistById,
+  // deletePlaylistById: deletePlaylistById,
 };

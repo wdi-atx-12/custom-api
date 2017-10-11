@@ -1,13 +1,20 @@
 const mongoose = require('mongoose');
 
+//represented as a collection of SandwichMenus in the DB.
+//Ex: {name:"Veggie", sandwich: "59da8318ad18350483f37e87"}
 const SandwichMenu = mongoose.model('SandwichMenu', new mongoose.Schema({
+	name: {
+		type: String
+	},
 	sandwich: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Sandwich'
-	},
-	name: { type: String }
+	}
 }));
 
+//represented as a collection of Sandwiches in the DB.
+//meats, vegetables, cheeses, sauces, and spices are arrays of ObjectIds in Topping
+//Ex: {breadType:"white", meats: ["59da8318ad18350483f37e87"], ..., price: 3.99}
 const Sandwich = mongoose.model('Sandwich', new mongoose.Schema({
 	breadType: {
 		type: String,
@@ -40,6 +47,6 @@ const Sandwich = mongoose.model('Sandwich', new mongoose.Schema({
 }));
 
 module.exports = {
-  Sandwich: Sandwich,
-  SandwichMenu: SandwichMenu
+	Sandwich: Sandwich,
+	SandwichMenu: SandwichMenu
 }

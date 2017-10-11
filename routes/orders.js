@@ -1,8 +1,8 @@
-// this is an example file showing how you might define route handlers
-const DB = require('../models');
 const Common = require('./common.js');
 
-
+//Selects one item by parameter id from Order.
+//Populates sandwiches, desserts, and beverages with data from Sandwich,
+// Dessert, and Beverage, respectively
 function selectItem(req, res, DbSchema) {
 	DbSchema.findOne({_id: req.params.id})
 	.populate('sandwiches')
@@ -14,6 +14,9 @@ function selectItem(req, res, DbSchema) {
 	});
 }//end of selectSimpleItem()
 
+//Selects all items from Order.
+//Populates sandwiches, desserts, and beverages with data from Sandwich,
+// Dessert, and Beverage, respectively
 function selectAllItems(req, res, DbSchema) {
 	DbSchema.find()
 	.populate('sandwiches')
@@ -25,11 +28,11 @@ function selectAllItems(req, res, DbSchema) {
 	});
 }//end of selectAllSimpleItems()
 
-// functions are exported here so they can be referenced in server.js to respond to incoming requests
+// exporting functions for use by server.js. Order is using some common functions
 module.exports = {
-	selectAllItems	: (req, res) => { selectAllItems(req, res, DB.SandwichMenu); },
-	selectItem 		: (req, res) => { selectItem(req, res, DB.SandwichMenu); },
-	insertItem 		: (req, res) => { Common.insertSimpleItem(req, res, DB.SandwichMenu); },
-	updateItem 		: (req, res) => { Common.updateSimpleItem(req, res, DB.SandwichMenu); },
-	deleteItem 		: (req, res) => { Common.deleteSimpleItem(req, res, DB.SandwichMenu); }
+	selectAllItems	: (req, res) => { selectAllItems(req, res, DB.Order); },
+	selectItem 		: (req, res) => { selectItem(req, res, DB.Order); },
+	insertItem 		: (req, res) => { Common.insertSimpleItem(req, res, DB.Order); },
+	updateItem 		: (req, res) => { Common.updateSimpleItem(req, res, DB.Order); },
+	deleteItem 		: (req, res) => { Common.deleteSimpleItem(req, res, DB.Order); }
 };

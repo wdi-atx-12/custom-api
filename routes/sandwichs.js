@@ -1,8 +1,8 @@
-// this is an example file showing how you might define route handlers
 const DB = require('../models');
 const Common = require('./common.js');
 
-
+//Selects one item by parameter id from Sandwich.
+//Populates meats, vegetables, cheeses, sauces, and spices with data from Topping
 function selectItem(req, res, DbSchema) {
 	DbSchema.findOne({_id: req.params.id})
 	.populate('meats')
@@ -16,6 +16,8 @@ function selectItem(req, res, DbSchema) {
 	});
 }//end of selectSimpleItem()
 
+//Selects all items from Sandwich.
+//Populates meats, vegetables, cheeses, sauces, and spices with data from Topping
 function selectAllItems(req, res, DbSchema) {
 	DbSchema.find()
 	.populate('meats')
@@ -29,7 +31,7 @@ function selectAllItems(req, res, DbSchema) {
 	});
 }//end of selectAllSimpleItems()
 
-// functions are exported here so they can be referenced in server.js to respond to incoming requests
+// exporting functions for use by server.js. Sandwich is using some common functions
 module.exports = {
 	selectAllItems	: (req, res) => { selectAllItems(req, res, DB.Sandwich); },
 	selectItem 		: (req, res) => { selectItem(req, res, DB.Sandwich); },

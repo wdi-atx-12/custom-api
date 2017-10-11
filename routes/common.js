@@ -1,27 +1,13 @@
 const DB = require('../models');
 
-//returns an object created from a group of key/value pairs
-function getObjectFromKeyValuePairs(pairs)
-{
-	var tmp = {};
-
-	for(var key in pairs) {
-		if(key[0] !== "_"){
-			if(pairs[key].length !== 0) {
-				tmp[`${key}`] = `${pairs[key]}`;
-			}
-		}
-	}
-
-	return tmp;
-} // GetObjectFromKeyValuePairs()
-
+//Selects one item by parameter id from specified DBSchema
 function selectSimpleItem(req, res, DbSchema) {
 	DbSchema.findOne({_id: req.params.id}, (err, fItem) => {
 		res.json(fItem);
 	});
 }//end of selectSimpleItem()
 
+//Selects all items from specified DBSchema
 function selectAllSimpleItems(req, res, DbSchema) {
 	DbSchema.find((err, items) => { // send all items as JSON response
 		if (err) { return console.log("index error: " + err); }
@@ -29,28 +15,29 @@ function selectAllSimpleItems(req, res, DbSchema) {
 	});
 }//end of selectAllSimpleItems()
 
+//Creates a simple item. Inserts item into the specified DBSchema
 function insertSimpleItem(req, res, DbSchema) {
 	(new DbSchema(req.body)).save((err, newItem) => {
 		res.json(newItem);
 	});
 }//end of insertSimpleItem()
 
+//Updates one item by parameter id from specified DBSchema
 function updateSimpleItem(req, res, DbSchema) {
-	//var changeItem = getObjectFromKeyValuePairs();
-	DbSchema.update({_id: req.params.id}, {$set: req.body}, {new:true}, (err, fItem) => {
+	DbSchema.update({_id: req.params.id}, {$set: req.body}, {new:true}, (err, uItem) => {
 		if (err) { return console.log("index error: " + err); }
-		res.json(fItem);
+		res.json(uItem);
 	});
 }//end of updateSimpleItem()
 
+//Deletes one item by parameter id from specified DBSchema
 function deleteSimpleItem(req, res, DbSchema) {
-	// find the index of the item we want to remove
-	DbSchema.findOneAndRemove({ _id: req.params.id })
-	.exec(function (err, deletedItem) {
-		res.json(deletedItem);
+	DbSchema.findOneAndRemove({ _id: req.params.id }).exec((err, dItem) => {
+		res.json(dItem);
 	});
 }//end of deleteSimpleItem()
 
+//exporting common, simple CRUD methods for use by other routes
 module.exports = {
 	selectAllSimpleItems : selectAllSimpleItems,
 	selectSimpleItem : selectSimpleItem,

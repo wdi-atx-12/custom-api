@@ -55,9 +55,9 @@ function updateRecipe(req,res){
 
 //delete recipe
 function deleteRecipe(req,res){
-  var recipeId = req.params.idl
+  var recipeId = req.params.id;
   db.Recipe.findOneAndRemove({_id: recipeId}, function(err, removedRecipe){
-    res.json(removedRecipe)
+    res.json(removedRecipe);
   })
 };
 

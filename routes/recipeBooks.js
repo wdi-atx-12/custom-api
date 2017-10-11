@@ -26,7 +26,21 @@ function getOneRecipeBook(req,res){
     res.json(foundRecipeBook);
   });
 };
-//blahblah blah
+
+// create new recipe book
+function createNewRecipeBook(req, res) {
+    var newRecipeBook = new db.RecipeBook(req.body);
+
+    newRecipeBook.save(function(err, recipeBook) {
+        if(err){
+                return console.log("create error: " + err);
+          } else {
+              console.log("created: ", recipeBook.name);
+              res.json(recipeBook);
+        }
+    });
+}
+
 // create new recipe book
 // function createNewRecipeBook(req,res){
 //   var newRecipeBook = new db.RecipeBook({
@@ -41,36 +55,6 @@ function getOneRecipeBook(req,res){
 //     });
 // };  ///DOESN'T WORK!!! :(
 
-// function createNewRecipeBook(req,res){
-//   var newRecipeBook = new db.RecipeBook({
-//     name: req.body.name,
-//     user: req.body.user
-//   });
-//   db.Recipe.findOne({recipeBook: req.body.recipes}, function(err, recipes){
-//     newRecipeBook.recipes = recipes;
-//     newRecipeBook.save(function(err, recipeBook){
-//       if(err){
-//         return console.log("create error: " + err);
-//       }
-//       console.log("created: ", recipeBook.name);
-//       res.json(recipeBook)
-//     });
-//   });
-// };////DOESN'T WORK!!! :(
-
-function createNewRecipeBook(req, res) {
-    var newRecipeBook = new db.RecipeBook(req.body);
-
-    newRecipeBook.save(function(err, recipeBook) {
-        if(err){
-                return console.log("create error: " + err);
-          } else {
-              console.log("created: ", recipeBook.name);
-              res.json(recipeBook);
-        }
-    });
-}
-
 //update book
 function updateRecipeBook(req,res){
   var recipeBookId = req.params.id;
@@ -84,7 +68,7 @@ function updateRecipeBook(req,res){
 function deleteRecipeBook(req,res){
   var recipeBookId = req.params.id;
   db.RecipeBook.findByIdAndRemove(recipeBookId, function(err, removedBook){
-    res.json(removedBook)
+    res.json(removedBook);
   })
 };
 

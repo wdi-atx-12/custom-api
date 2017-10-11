@@ -33,7 +33,7 @@ function getUserById(req, res){
       res.json(foundUser);
     }
   });
-}
+};
 
 function createUser(req, res) {
   var username = req.body.username;
@@ -51,12 +51,31 @@ function createUser(req, res) {
   newUser.save(function(err, newUser){
     res.send('user created')
   });
-})
+};
+
+function createSong(req, res) {
+  var name = req.body.name;
+  var artist = req.body.artist;
+  var url = req.body.url;
+  var user = req.body.user;
+
+  var newSong = new db.Song({
+    name: name,
+    artist: artist,
+    url: url,
+    user: user
+  });
+
+  newSong.save(function(err, newSong){
+    res.send('song created')
+  });
+};
 
 
 module.exports = {
   getUsers: getUsers,
+  createUser: createUser,
   getUserById: getUserById,
   getSongs: getSongs,
-  createUser: createUser
+  createSong: createSong,
 };

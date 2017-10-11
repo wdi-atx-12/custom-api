@@ -27,6 +27,7 @@ app.get('/users', routes.getUsers);
 app.post('/users', routes.createUser);
 app.get('/users/:id', routes.getUserById);
 app.get('/songs', routes.getSongs);
+app.post('/songs', routes.createSong);
 
 
 // get all playlists
@@ -41,7 +42,6 @@ app.get('/playlists', function(req, res) {
   });
 });
 
-// create new song
 // create new playlist
 
 // update
@@ -51,10 +51,9 @@ app.delete('/users/:id', function (req, res) {
   var userID = req.params.id;
   db.User.findOneAndRemove({_id: userID}, function (err, deletedUser){
     res.json(deletedUser);
-  })
+  });
 });
 
-// TODO: delete the above dummy routes and add your actual routes
 
 // start app
 app.listen(port, function(err) {

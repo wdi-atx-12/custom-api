@@ -24,26 +24,25 @@ function getArtworkItem(req, res) {
 }
 
 function updateArtworkItem(req, res) {
-  db.Artwork.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
-    res.json(post);
+  db.Artwork.findByIdAndUpdate(req.params.id, req.body, function (err, data) {
+    res.json(data);
   });
 };
 
 function deleteArtworkItem(req, res) {
-  db.Artwork.findByIdAndRemove(req.params.id, req.body, function (err, post) {
-    res.json(post);
+  db.Artwork.findByIdAndRemove(req.params.id, req.body, function (err, data) {
+    res.json(data);
   });
-
-}
+};
 
 
 function createArtworkItem(req, res) {
   const newArtworkItem = db.Artwork({
-  artworkName: req.body.artworkName,
+  artName: req.body.artName,
   imageUrl: req.body.imageUrl,
-  tags: [ ],
-  location: req.body.location
-  //Artist: ArtistSchema
+  tags: [],
+  location: req.body.location,
+  artist: req.body.artist
   });
 
   newArtworkItem.save(function(err, data) {

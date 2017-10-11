@@ -1,85 +1,77 @@
-# <img src="https://cloud.githubusercontent.com/assets/7833470/10423298/ea833a68-7079-11e5-84f8-0a925ab96893.png" width="60"> Personal API - Weekend Lab
+# Famous Artworks API
 
-It's time to have some fun and play with the technologies you've learned in the past week. Your goal is to start your own API.
+The famous artworks API is a database driven JSON API that maps Famous artworks and their locations to data about the artist that created them.
 
-Your API can be related to whatever you like, but its Mongo DB must have at least 2 schemas/models that are connected by reference.
 
-For example, if your API is for keeping track of various hotels, it would need to reference another type of object besides hotels. You might choose to provide more information about the cities your hotels are found in beyond a simple string like "Austin" or "Orlando". Your `City` schema/model could contain information about the city iself like city name, state, local attractions, and of course a list of related hotels connected by reference.
+## Heroku Hosted Solution
+You can find the API hosted on heroku at the following url.
 
-### Your API should have:
+https://damp-mesa-41370.herokuapp.com/README.md
 
-* Well-organized **JSON API** Endpoints
-* The ability to **read** (`GET`) each type of resource **as a collection**
-* The ability to **read** (`GET`) each type of resource **by specific ID**
-* The ability to **create** (`POST`) a new resource of each type
-* At least one **update** (`PUT`) endpoint
-* At least one **delete** (`DELETE`) endpoint
+## API DATA MODEL
+References are not created automatically with this version of the API. Therefore Reference keys in both Artist and Artwork must be added via a PUT on each model respectively.
 
-Try to start by completing the schema/model and implementing endpoints for only one type of resource and expand from there to include other schemas/models/endpoints.
+<img src="./docs/artistapi.svg">
 
-Fork and clone this repo. You can use the placeholder code in this repo as a starting point.
 
-## Step 0: Deploy to Heroku
+## API End Points
 
-Before we start coding, let's prepare to deploy our API on Heroku so other developers can access our API from any computer.
 
-You can find full instructions here: [Deploying Express Apps to Heroku](https://github.com/SF-WDI-LABS/shared_modules/blob/master/how-to/heroku-mean-stack-deploy.md)
+### Get Artists
+* method: GET
+* path: https://damp-mesa-41370.herokuapp.com/artist
+* description: returns a result of all current Artist Records as JSON.
 
-As you continue to work on this project, you'll need to remember to push your changes to Heroku (just like you would with Github!):
+### Get A Specific Artist
+* method: GET
+* path: https://damp-mesa-41370.herokuapp.com/artist/<<_id here>>
+* description: returns a result of a specific artist as JSON.
 
-```bash
-# git add changed-files
-# git commit -m "detailed description of what I changed"
-git push heroku master
-heroku open
-```
+### Create An Artist
+* method: POST
+* path: https://damp-mesa-41370.herokuapp.com/artist
+* description: creates a new artist record, required input as JSON will include:
+```{
+  "firstName": "Artist's First Name here",
+  "lastName": "Artist's Last Name here",
+  "portraitImg": "http://www.hostedurlexample.com/artist-portrait.jpg",
+  "hometown": "City, State",
+  "bio": "artist bio typed here",
+  "Artwork": [""]
+}```
 
-It's common for code to break "in production" even when it works fine "in development" on your computer (due to different environment variables, missing dependenies, etc). Do your best to debug! Let us know if you get stuck on deployment issues.
+### Delete a specific artist
+* method: DELETE
+* path: https://damp-mesa-41370.herokuapp.com/artist/<<_id here>>**
+* description: recalls an existing Artwork record and removes it from the database.
 
-## Step 1: Verify the Test Routes in Postman
 
-Since we're building a JSON API with no front-end (yet), Postman will come in handy for testing our work.
+### Get All Artworks
+* method: GET
+* path: https://damp-mesa-41370.herokuapp.com/artwork
+* description: returns a result of all current Artwork Records as JSON.
 
-Make sure you've **installed dependencies** and added a `.env` file with your **Mongo DB credentials**. Then **run the server** with the placeholder code.
+### Create An Artwork
+* method: POST
+* path: https://damp-mesa-41370.herokuapp.com/artwork
+* description: creates a new artwork record, required input as JSON will include the following
+```{
+  "artName": "Mona Lisa",
+  "imageUrl": "https://upload.wikimedia.org/retouched.jpg",
+  "tags": [""],
+  "location": "Paris, France",
+  "artist": ""
+}```
 
-Use Postman to verify that the `GET /test` and `POST /test` endpoints work, confirming that our server can connect to our Mongo DB and complete operations on demand. For the `POST` endpoint, you can simply submit an object with a `name` property, and then it should appear in your next `GET /test` request:
+### Update A Specific Artwork
+* method: PUT
+* path: https://damp-mesa-41370.herokuapp.com/artwork/<<_id here>>**
+* description: recalls an existing Artwork record and is able to update any specific value within it's schema. The following example will update the records location:
+```{
+  "location": "Barcelona, Spain"
+}```
 
-```json
-{
-    "name": "test item 1"
-}
-```
-
-## Step 2: Build Your Main Schema/Model
-
-Next, go to the `models/` folder and add a new file for your main schema/model. For now we'll create it without a reference to any other schemas/models.
-
-Be sure to export the model from the file and then modify `models/index.js`. It should require the file you just created and then export the models from it so they can be used more directly while preparing responses for our routes.
-
-## Step 3: Create Your Primary Endpoints
-
-Now go to the `routes/` folder and create a new file to handle your endpoints for the primary model. It should contain function definitions for handling various endpoints (`GET`, `POST`, etc) related to your primary model.
-
-Start with the `GET` method for retrieving all matching resources. Then add a function for adding new resources (`POST`). Then add a function for retireving a specific resource by ID (`GET`, with path parameter).
-
-Make sure that for each function, you modify `server.js` to register the functions as endpoint/route handlers.
-
-## Step 4: Check Your Work in Postman
-
-Open up Postman with your new code running on `localhost`. Hit your new `GET` and `POST` endpoints a few times to verify everything is working as expected.
-
-If it's all working, add/commit your changes to git. Push to Github to backup your code. Push to Heroku so other people can use your newly created endpoints.
-
-Return to Postman and test again, making sure that your code is working "in production" on the URL Heroku provided for your API server.
-
-## Step 5: Add Your Other Schemas/Models/Endpoints
-
-Now it's time to expand on what you've done. Piece by piece, add the other schemas/models and endpoints you planned.
-
-Be sure to test your endpoints as you go in Postman. Also don't forget to commit your changes and deploy to Heroku from time to time.
-
-## Options for Extra Challenge
-
-- **Add even more schemas/models/enpoints.** Thinking of more detailed information is usually fairly easy, but the code to support it gets more difficult the more detail is added.
-- **Add support for query parameters** to limit/filter responses on your endpoints that retrieve all resources in a collection. For example, you might limit items based on rating, time/date range, tags, etc.
-- **Document all the endpoints of your API** in a markdown file. What does each endpoint do? How should a new user of your API get started?
+### Delete a specific artwork
+* method: DELETE
+* path: https://damp-mesa-41370.herokuapp.com/artwork/<<_id here>>
+* description: recalls an existing Artwork record and removes it from the database.

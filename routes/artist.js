@@ -27,28 +27,25 @@ function getArtistItem(req, res) {
 };
 
 function updateArtistItem(req, res) {
-  db.Artist.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
-    res.json(post);
+  db.Artist.findByIdAndUpdate(req.params.id, req.body, function (err, data) {
+    res.json(data);
   });
 };
 
 function deleteArtistItem(req, res) {
-  db.Artist.findByIdAndRemove(req.params.id, req.body, function (err, post) {
-    res.json(post);
+  db.Artist.findByIdAndRemove(req.params.id, req.body, function (err, data) {
+    res.json(data);
   });
-
 }
 
 function createArtistItem(req, res) {
   const newArtistItem = db.Artist({
-    userName: req.body.userName,
-    email: req.body.email,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     portraitImg: req.body.portraitImg,
     hometown: req.body.hometown,
-    bio: req.body.bio
-    //Artworks: req.body.Artworks
+    bio: req.body.bio,
+    artwork: [req.body.artwork]
    });
 
   newArtistItem.save(function(err, data) {

@@ -40,7 +40,7 @@ function findByIdOrders(req, res) {
 };
 
 function changeOrder(req, res) {
-  db.Order.update({ _id: req.params.id }, {$set: changeOrder}, (err, findItem) => {
+  db.Order.find({ _id: req.params.id }, {$set: changeOrder}, (err, findItem) => {
     res.json(findItem);
   });
 };

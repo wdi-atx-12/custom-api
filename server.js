@@ -27,6 +27,8 @@ app.get('/vehicles', vehiclesRoutes.getVehicleItems);
 app.post('/vehicles', vehiclesRoutes.createVehicleItem);
 app.get('/vehicles/:id', vehiclesRoutes.getOneVehicle);
 app.delete('/vehicles/:id', vehiclesRoutes.deleteOneVehicle);
+app.put('/vehicles/:id', vehiclesRoutes.updateOneVehicle);
+
 
 
 

@@ -20,6 +20,7 @@ function createVehicleItem(req, res) {
     year: req.body.year,
     engineInfo: req.body.engineInfo,
     numberOfDoors: req.body.numberOfDoors,
+    colorOptions: req.body.colorOptions
     // manufacturerInfo: manufacturerInfo,
 
   });
@@ -48,11 +49,42 @@ function getOneVehicle(req, res) {
 }
 
 function deleteOneVehicle(req, res) {
-  let id = req.params.id;
+  var id = req.params.id;
   db.Vehicles.findByIdAndRemove(id, function (err, deletedVehicle){
     res.json(deletedVehicle);
   });
 }
+
+function updateOneVehicle(req, res) {
+  db.Vehicles.findByIdAndUpdate({_id: req.params.id}, {
+    model: req.body.model,
+    year: req.body.year,
+    engineInfo: req.body.engineInfo,
+    numberOfDoors: req.body.numberOfDoors,
+    colorOptions: req.body.colorOptions
+  }, function (err, updateOneVehicle){
+    if (err) {
+      res.status(500).send('Internal server error!');
+    } else {
+      res.json(updateOneVehicle);
+    }
+  })
+}
+
+
+
+
+  // db.Vehicles.findByIdAndUpdate({_id: req.params.id}, {
+  //   model: req.body.model,
+  //   year: req.body.year,
+  //   engineInfo: req.body.engineInfo,
+  //   numberOfDoors: req.body.numberOfDoors,
+  //   colorOptions: req.body.colorOptions
+  // }, function (err, updateOneVehicle){
+
+
+
+
 
 
 
@@ -61,5 +93,6 @@ module.exports = {
   getVehicleItems: getVehicleItems,
   createVehicleItem: createVehicleItem,
   getOneVehicle: getOneVehicle,
-  deleteOneVehicle: deleteOneVehicle
+  deleteOneVehicle: deleteOneVehicle,
+  updateOneVehicle: updateOneVehicle
 };

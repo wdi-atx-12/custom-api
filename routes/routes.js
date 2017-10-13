@@ -60,8 +60,6 @@ function getSongs(req, res) {
   });
 }
 
-
-
 function createSong(req, res) {
   var name = req.body.name;
   var artist = req.body.artist;
@@ -80,6 +78,13 @@ function createSong(req, res) {
   });
 };
 
+function deleteSongById(req, res) {
+  var songID = req.params.id;
+  db.Song.findOneAndRemove({_id: songID}, function (err, deletedSong){
+    res.json(deletedSong);
+  })
+};
+
 function getPlaylists(req, res) {
   db.Playlist.find({}, function (err, data){
     if (err) {
@@ -91,7 +96,7 @@ function getPlaylists(req, res) {
   });
 };
 
-//TODO: make adding songs by id to playlist work
+//TODO: make adding songs by id to created playlist work
 function createPlaylist(req, res) {
   var name = req.body.name;
   var songs = req.body.songs;
@@ -121,7 +126,7 @@ module.exports = {
   getSongs: getSongs,
   createSong: createSong,
   // updateSongById: updateSongById,
-  // deleteSongById: deleteSongById,
+  deleteSongById: deleteSongById,
 
   getPlaylists: getPlaylists,
   createPlaylist: createPlaylist,

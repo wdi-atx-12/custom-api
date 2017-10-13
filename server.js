@@ -30,7 +30,7 @@ app.delete('/users/:id', routes.deleteUserById);
 app.get('/songs', routes.getSongs);     // this route will eventually be disabled
 app.post('/songs', routes.createSong);  // to accommodate seeing all songs in a playlist
 // app.put('/songs/:id', routes.updateSongById);
-// app.delete('/songs/:id', routes.deleteSongById);
+app.delete('/songs/:id', routes.deleteSongById);
 
 // playlist routes
 app.get('/playlists', routes.getPlaylists);

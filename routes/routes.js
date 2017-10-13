@@ -91,6 +91,25 @@ function getPlaylists(req, res) {
   });
 };
 
+//TODO: make adding songs by id to playlist work
+function createPlaylist(req, res) {
+  var name = req.body.name;
+  var songs = req.body.songs;
+  var tags = req.body.tags;
+  var user = req.body.user;
+
+  var newPlaylist = new db.Playlist({
+    name: name,
+    songs: [],
+    tags: [],
+    user: user
+  });
+
+  newPlaylist.save(function(err, newPlaylist){
+    res.send('playlist created')
+  });
+};
+
 
 module.exports = {
   getUsers: getUsers,
@@ -103,9 +122,9 @@ module.exports = {
   createSong: createSong,
   // updateSongById: updateSongById,
   // deleteSongById: deleteSongById,
-  
+
   getPlaylists: getPlaylists,
-  // createPlaylist: createPlaylist,
+  createPlaylist: createPlaylist,
   // updatePlaylistById: updatePlaylistById,
   // deletePlaylistById: deletePlaylistById,
 };

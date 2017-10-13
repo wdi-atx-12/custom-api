@@ -27,7 +27,7 @@ app.post('/users', routes.createUser);
 app.delete('/users/:id', routes.deleteUserById);
 
 // song routes
-app.get('/songs', routes.getSongs);     // this route will eventually be disabled
+app.get('/songs', routes.getSongs);     // <-- this route will eventually be disabled
 app.post('/songs', routes.createSong);  // to accommodate seeing all songs in a playlist
 // app.put('/songs/:id', routes.updateSongById);
 app.delete('/songs/:id', routes.deleteSongById);
@@ -36,7 +36,7 @@ app.delete('/songs/:id', routes.deleteSongById);
 app.get('/playlists', routes.getPlaylists);
 app.post('/playlists', routes.createPlaylist);
 // update
-
+app.delete('/playlists/:id', routes.deletePlaylistById);
 
 
 

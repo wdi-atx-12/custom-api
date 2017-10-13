@@ -115,6 +115,13 @@ function createPlaylist(req, res) {
   });
 };
 
+function deletePlaylistById(req, res) {
+  var playlistID = req.params.id;
+  db.Playlist.findOneAndRemove({_id: playlistID}, function (err, deletedPlaylist){
+    res.json(deletedPlaylist);
+  })
+};
+
 
 module.exports = {
   getUsers: getUsers,
@@ -131,5 +138,5 @@ module.exports = {
   getPlaylists: getPlaylists,
   createPlaylist: createPlaylist,
   // updatePlaylistById: updatePlaylistById,
-  // deletePlaylistById: deletePlaylistById,
+  deletePlaylistById: deletePlaylistById,
 };
